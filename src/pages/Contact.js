@@ -5,7 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { sanitizeInput } from "../utils/sanitize";
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("mdklajoy"); // replace with your Formspree endpoint
+  const [state, handleSubmit] = useForm("mdklajoy"); 
   const [captchaValid, setCaptchaValid] = useState(false);
 
   const handleSanitizedSubmit = (e) => {

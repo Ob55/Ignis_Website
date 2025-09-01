@@ -1,9 +1,12 @@
 // Footer.jsx
 import { FaWhatsapp, FaLinkedin } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Footer = () => {
+    const navigate = useNavigate();
   return (
     <footer className="relative bg-green-100 py-16 overflow-hidden">
       {/* Floating blobs */}
@@ -14,7 +17,12 @@ const Footer = () => {
       <div className="relative container mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-5 gap-8 text-black">
         {/* Logo */}
         <div className="md:col-span-1 flex flex-col items-start">
-          <img src="/images/ignis-logo.png" alt="Ignis Innovation Logo" className="h-16 mb-4" />
+<img
+      src="/images/ignis-logo.png"
+      alt="Ignis Innovation Logo"
+      className="h-16 mb-4 cursor-pointer"
+      onClick={() => navigate("/")}
+    />
           <p className="text-sm">
             Ignis Innovation – Efficient, scalable, and modern kitchen solutions.
           </p>

@@ -1,5 +1,8 @@
+import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+
 export default function Product() {
-  const products = [
+    const products = [
     {
       category: "Electric Pressure Cookers (EPCs)",
       items: [
@@ -34,6 +37,26 @@ export default function Product() {
   ];
 
   const whatsappNumber = "+254724326256";
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [captchaValid, setCaptchaValid] = useState(false);
+
+  const handleBuyClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleConfirm = () => {
+    if (!captchaValid) {
+      alert("⚠️ Please verify reCAPTCHA before continuing.");
+      return;
+    }
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=Hello, I want to buy ${encodeURIComponent(
+        selectedProduct.name
+      )}`,
+      "_blank"
+    );
+    setSelectedProduct(null); // close modal after redirect
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -51,48 +74,63 @@ export default function Product() {
       <div className="p-10 space-y-12">
         {products.map((category) => (
           <div key={category.category}>
-            {/* Category Heading */}
             <h1 className="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-green-500 pb-2">
               {category.category}
             </h1>
-
-            {/* Product Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {category.items.map((p) => (
                 <div
                   key={p.id}
                   className="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl transition transform hover:-translate-y-2"
                 >
-                  {/* Product Image */}
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    className="w-full h-52 object-cover rounded-lg"
-                  />
-
-                  {/* Product Info */}
-                  <h2 className="mt-4 text-xl font-semibold text-gray-800">
-                    {p.name}
-                  </h2>
+                  <img src={p.image} alt={p.name} className="w-full h-52 object-cover rounded-lg" />
+                  <h2 className="mt-4 text-xl font-semibold text-gray-800">{p.name}</h2>
                   <p className="text-gray-600 text-sm">{p.details}</p>
-
-                  {/* Buy Button */}
-                  <a
-                    href={`https://wa.me/${whatsappNumber}?text=Hello, I want to buy ${encodeURIComponent(
-                      p.name
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => handleBuyClick(p)}
                     className="mt-4 block w-full bg-green-600 text-white py-2 rounded-lg text-center font-medium hover:bg-green-700 transition"
                   >
                     Buy Now
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         ))}
       </div>
+
+      {/* Security Modal */}
+      {selectedProduct && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
+            <h2 className="text-xl font-bold text-gray-800 mb-4">
+              Confirm WhatsApp Order
+            </h2>
+            <p className="text-gray-600 mb-4">
+              You’re about to order: <strong>{selectedProduct.name}</strong>
+            </p>
+            <ReCAPTCHA
+              sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo" // ✅ use your site key
+              onChange={() => setCaptchaValid(true)}
+              onExpired={() => setCaptchaValid(false)}
+            />
+            <div className="flex justify-end gap-3 mt-4">
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="px-4 py-2 rounded-lg border"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirm}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg"
+              >
+                Continue to WhatsApp
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

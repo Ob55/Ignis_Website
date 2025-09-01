@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const linkClass = ({ isActive }) =>
     isActive
@@ -15,8 +17,12 @@ export default function Header() {
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <img src="/images/ignis-logo.png" alt="Ignis Logo" className="h-10 w-auto" />
-        </div>
+  <img
+      src="/images/ignis-logo.png"
+      alt="Ignis Logo"
+      className="h-10 w-auto cursor-pointer"
+      onClick={() => navigate("/")}
+    />        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-10">
