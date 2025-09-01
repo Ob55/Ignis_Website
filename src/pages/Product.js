@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Product() {
-    const products = [
+  const products = [
     {
       category: "Electric Pressure Cookers (EPCs)",
       items: [
-        { id: 1, name: "IGNIS 6 lts", details: "4 – 6 persons", image: "/images/epc6.png" },
-        { id: 2, name: "IGNIS 10 lts", details: "10 – 14 persons", image: "/images/epc10.png" },
+        { id: 1, name: "IGNIS 6 lts", details: "4 – 6 persons", image: "/images/epc6.jpeg" },
+        { id: 2, name: "IGNIS 10 lts", details: "10 – 14 persons", image: "/images/epc10.jpeg" },
         { id: 3, name: "IGNIS 50 lts", details: "40 – 100 pax", image: "/images/epc50.png" },
       ],
     },
@@ -21,7 +21,7 @@ export default function Product() {
     {
       category: "Institutional Steam Cookers",
       items: [
-        { id: 6, name: "IGNIS KIFARU (1000)", details: "Capacity: 300", image: "/images/kifaru.png" },
+        { id: 6, name: "IGNIS KIFARU (1000)", details: "Capacity: 300", image: "/images/kifaru.jpeg" },
         { id: 7, name: "IGNIS NYATI (1500)", details: "Capacity: 450 – 500", image: "/images/nyati.png" },
         { id: 8, name: "IGNIS TEMBO (2000)", details: "Capacity: 600 – 700", image: "/images/tembo.png" },
         { id: 9, name: "IGNIS SIMBA (2500)", details: "Capacity: 1000 plus", image: "/images/simba.png" },
@@ -83,7 +83,11 @@ export default function Product() {
                   key={p.id}
                   className="bg-white rounded-xl shadow-lg p-5 hover:shadow-2xl transition transform hover:-translate-y-2"
                 >
-                  <img src={p.image} alt={p.name} className="w-full h-52 object-cover rounded-lg" />
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="w-full max-h-64 object-contain rounded-lg"
+                  />
                   <h2 className="mt-4 text-xl font-semibold text-gray-800">{p.name}</h2>
                   <p className="text-gray-600 text-sm">{p.details}</p>
                   <button
@@ -110,7 +114,7 @@ export default function Product() {
               You’re about to order: <strong>{selectedProduct.name}</strong>
             </p>
             <ReCAPTCHA
-              sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo" // ✅ use your site key
+              sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo" 
               onChange={() => setCaptchaValid(true)}
               onExpired={() => setCaptchaValid(false)}
             />
