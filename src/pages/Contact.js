@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../ components/Footer";
 import { useForm, ValidationError } from "@formspree/react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { sanitizeInput } from "../utils/sanitize";
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("mdklajoy"); // your Formspree endpoint
+  const [state, handleSubmit] = useForm("mdklajoy"); // replace with your Formspree endpoint
+  const [captchaValid, setCaptchaValid] = useState(false);
+
+  const handleSanitizedSubmit = (e) => {
+    e.preventDefault();
+
+    if (!captchaValid) {
+      alert("⚠️ Please verify the reCAPTCHA.");
+      return;
+    }
+
+    const form = e.target;
+
+    // sanitize inputs before sending
+    form.name.value = sanitizeInput(form.name.value);
+    form.email.value = sanitizeInput(form.email.value);
+    form.phone.value = sanitizeInput(form.phone.value);
+    form.message.value = sanitizeInput(form.message.value);
+
+    handleSubmit(e); // Formspree will handle sending
+  };
 
   return (
     <div className="flex flex-col gap-16">
@@ -29,7 +51,7 @@ export default function Contact() {
               ✅ Thanks for your message! We’ll get back to you soon.
             </p>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form onSubmit={handleSanitizedSubmit} className="flex flex-col gap-4">
               {/* Name + Email + Phone */}
               <div className="flex flex-col md:flex-row gap-4">
                 <input
@@ -37,6 +59,7 @@ export default function Contact() {
                   name="name"
                   placeholder="Name"
                   required
+                  maxLength="50"
                   className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                 />
                 <input
@@ -44,6 +67,7 @@ export default function Contact() {
                   name="email"
                   placeholder="Email"
                   required
+                  maxLength="100"
                   className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
                 />
 
@@ -56,30 +80,32 @@ export default function Contact() {
                     type="tel"
                     name="phone"
                     placeholder="712345678"
+                    pattern="[0-9]{9}"
+                    title="Enter a valid 9-digit phone number"
                     required
                     className="flex-1 px-4 py-3 outline-none"
                   />
                 </div>
               </div>
 
-              <ValidationError
-                prefix="Email"
-                field="email"
-                errors={state.errors}
-              />
+              <ValidationError prefix="Email" field="email" errors={state.errors} />
 
               {/* Message textarea */}
               <textarea
                 name="message"
                 placeholder="Message"
                 required
+                maxLength="500"
                 className="w-full border px-4 py-3 rounded-lg h-32 focus:ring-2 focus:ring-orange-400 outline-none"
               ></textarea>
 
-              <ValidationError
-                prefix="Message"
-                field="message"
-                errors={state.errors}
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+              {/* reCAPTCHA */}
+              <ReCAPTCHA
+                sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo"  // ✅ use site key here
+                onChange={() => setCaptchaValid(true)}
+                onExpired={() => setCaptchaValid(false)}
               />
 
               {/* Submit Button */}
