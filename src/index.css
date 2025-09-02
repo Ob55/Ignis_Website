@@ -7,3 +7,12 @@
 body {
   font-family: 'Nunito Sans', sans-serif;
 }
+
+/* Override default react-toastify success */
+.Toastify__toast--success {
+  background: #22c55e !important; /* Tailwind green-500 */
+  color: white !important;
+}
+.Toastify__progress-bar--success {
+  background: white !important;
+}

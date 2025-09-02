@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../ components/Footer";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { sanitizeInput } from "../utils/sanitize";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("mdklajoy"); 
+  const [state, handleSubmit] = useForm("mdklajoy");
   const [captchaValid, setCaptchaValid] = useState(false);
 
   const handleSanitizedSubmit = (e) => {
     e.preventDefault();
 
     if (!captchaValid) {
-      alert("⚠️ Please verify the reCAPTCHA.");
+      toast.error("Please verify the reCAPTCHA.", {
+        position: "top-right",
+        autoClose: 4000,
+        className: "bg-red-500 text-white rounded-lg shadow-lg",
+        bodyClassName: "text-white font-medium",
+        progressClassName: "bg-white",
+      });
       return;
     }
 
@@ -26,6 +34,23 @@ export default function Contact() {
 
     handleSubmit(e); // Formspree will handle sending
   };
+
+  //  Show toast after successful submission
+  useEffect(() => {
+    if (state.succeeded) {
+      toast.success("Thanks for your message! We’ll get back to you soon.", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        className: "bg-green-500 text-white rounded-lg shadow-lg",
+        bodyClassName: "text-white font-medium",
+        progressClassName: "bg-white",
+      });
+    }
+  }, [state.succeeded]);
 
   return (
     <div className="flex flex-col gap-16">
@@ -46,12 +71,11 @@ export default function Contact() {
 
         {/* Right Side: Form */}
         <div className="lg:w-1/2 bg-gray-50 p-10 rounded-xl shadow-md">
-          {state.succeeded ? (
-            <p className="text-green-600 text-lg font-semibold">
-              ✅ Thanks for your message! We’ll get back to you soon.
-            </p>
-          ) : (
-            <form onSubmit={handleSanitizedSubmit} className="flex flex-col gap-4">
+          {!state.succeeded ? (
+            <form
+              onSubmit={handleSanitizedSubmit}
+              className="flex flex-col gap-4"
+            >
               {/* Name + Email + Phone */}
               <div className="flex flex-col md:flex-row gap-4">
                 <input
@@ -88,7 +112,11 @@ export default function Contact() {
                 </div>
               </div>
 
-              <ValidationError prefix="Email" field="email" errors={state.errors} />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+              />
 
               {/* Message textarea */}
               <textarea
@@ -99,11 +127,15 @@ export default function Contact() {
                 className="w-full border px-4 py-3 rounded-lg h-32 focus:ring-2 focus:ring-orange-400 outline-none"
               ></textarea>
 
-              <ValidationError prefix="Message" field="message" errors={state.errors} />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+              />
 
               {/* reCAPTCHA */}
               <ReCAPTCHA
-                sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo"  // ✅ use site key here
+                sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo" // your site key
                 onChange={() => setCaptchaValid(true)}
                 onExpired={() => setCaptchaValid(false)}
               />
@@ -117,10 +149,22 @@ export default function Contact() {
                 {state.submitting ? "Sending..." : "Leave Message"}
               </button>
             </form>
+          ) : (
+            <p className="text-gray-600 text-lg font-semibold">
+              Your message has been sent successfully.
+              We will get back to you shortly.
+            </p>
           )}
         </div>
       </div>
       <Footer />
+
+      {/* Toastify container with global override */}
+      <ToastContainer
+        toastClassName="rounded-lg shadow-lg"
+        bodyClassName="text-white font-medium"
+        progressClassName="bg-white"
+      />
     </div>
   );
 }
