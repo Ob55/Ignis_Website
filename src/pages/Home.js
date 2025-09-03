@@ -2,18 +2,19 @@ import Footer from '../ components/Footer';
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function Home() {
   const [imageIndex, setImageIndex] = useState(0);
-const images = [
-  "/images/homepage1.png",
-  "/images/cooker.png",
-  "/images/homePage2.jpg",
-  "/images/homePage3.jpg",
-  "/images/homePage4.jpg",
-];
+    const images = [
+      "/images/homepage1.webp",
+      "/images/cooker.webp",
+      "/images/homePage2.webp",
+      "/images/homePage3.webp",
+      "/images/homePage4.webp",
+    ];
 
   // For "What we offer" section (right side nav images)
   const [selectedOffer, setSelectedOffer] = useState("Institutional Steam Kitchens");
@@ -111,6 +112,9 @@ const testimonials = [
 }, [images.length]); // ✅ added dependency
 
 
+  const navigate = useNavigate();
+
+
   return (
     <div>
       {/* Hero Section */}
@@ -126,12 +130,18 @@ const testimonials = [
               Designs and deploys steam-based institutional kitchens and efficient electric appliances for households—backed by digital monitoring, training, and after-sales service.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
-              <button className="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-900 transition">
-                Talk To Our Team
-              </button>
-              <button className="bg-yellow-200 text-black px-6 py-3 rounded-lg hover:bg-yellow-300 transition">
-                Shop Household Appliances
-              </button>
+              <button
+              className="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-900 transition"
+              onClick={() => navigate("/contact")}
+            >
+              Talk To Our Team
+            </button>
+              <button
+              className="bg-yellow-200 text-black px-6 py-3 rounded-lg hover:bg-yellow-300 transition"
+              onClick={() => navigate("/Product ")}
+            >
+              Shop Household Appliances
+            </button>
             </div>
           </div>
 
@@ -201,8 +211,6 @@ const testimonials = [
 </div>
 
 </section>
-
-
 
       {/* What We Offer Section */}
      <section className="offer-section relative bg-gradient-to-r from-green-50 via-white to-green-50 py-20 overflow-hidden">
@@ -385,8 +393,10 @@ const testimonials = [
     />
   </span>
 </h2>
-      <button className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
-        View Products
+      <button 
+      className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition"
+      onClick={() => navigate("/Product ")} >
+        View Our Products
       </button>
     </div>
 
@@ -401,10 +411,10 @@ const testimonials = [
           />
           {/* Overlay Arrow Button */}
           <button
-            onClick={() => alert(`Product ${product} clicked!`)}
+            // onClick={() => alert(`Product ${product} clicked!`)}
             className="absolute bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg opacity-80 hover:opacity-100 transition"
           >
-            ➔
+            {/* ➔ */}
           </button>
         </div>
       ))}
@@ -456,7 +466,6 @@ const testimonials = [
         {/* Decorative Close Quote */}
         <span className="text-yellow-400 text-6xl absolute bottom-2 right-4 select-none">&rdquo;</span>
       </div>
-
       {/* Right Button */}
       <button
         onClick={nextTestimonial}
@@ -468,10 +477,7 @@ const testimonials = [
   </div>
 </section>
       
-
-      <Footer />
-
-      
+      <Footer />      
     </div>
   );
 }
