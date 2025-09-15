@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import Footer from "../components/Footer";
 
 export default function Product() {
   const products = [
@@ -61,14 +62,44 @@ export default function Product() {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header Section */}
-      <div className="bg-green-600 text-center py-12 rounded-b-3xl shadow-md">
-        <h1 className="text-4xl font-extrabold text-white tracking-wide">
-          Our Products
-        </h1>
-        <p className="mt-3 text-lg text-green-100">
-          Explore our product range and order instantly on WhatsApp
-        </p>
-      </div>
+      <div className="relative w-full text-white text-center py-[90px] px-[30px] md:py-[150px] md:px-[150px] overflow-hidden flex flex-col items-center justify-center">
+
+  {/* Orange Background (left side) */}
+  <div
+    className="absolute inset-0 bg-orange-500"
+    style={{
+      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Orange = 70%
+    }}
+  ></div>
+
+  {/* Green Background (right side, slanted) */}
+  <div
+    className="absolute inset-0 bg-green-900"
+    style={{
+      clipPath:
+        window.innerWidth >= 768
+          ? "polygon(55% 0, 100% 0, 100% 100%, 46% 100%)" // Green slanted on desktop
+          : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)", // Straight on mobile
+    }}
+  ></div>
+
+  {/* Floating product image in background */}
+  <img 
+    src="/images/cooker.webp" 
+    alt="Products Background" 
+    className="absolute opacity-50 w-[200px] h-[200px] md:w-[400px] md:h-[400px] object-contain animate-shake-slow"
+    style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+  />
+
+  {/* Text Content */}
+  <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-wide relative z-10">
+    Our Products
+  </h1>
+  <p className="mt-4 text-base md:text-xl text-green-100 max-w-md md:max-w-2xl mx-auto relative z-10">
+    Explore our product range and order instantly on WhatsApp
+  </p>
+</div>
+
 
       {/* Categories & Products */}
       <div className="p-10 space-y-12">
@@ -100,8 +131,9 @@ export default function Product() {
               ))}
             </div>
           </div>
-        ))}
+           ))}
       </div>
+         <Footer />      
 
       {/* Security Modal */}
       {selectedProduct && (
@@ -136,5 +168,6 @@ export default function Product() {
         </div>
       )}
     </div>
+    
   );
 }

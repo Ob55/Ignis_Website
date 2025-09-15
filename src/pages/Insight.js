@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Footer from '../ components/Footer';
+import Footer from '../components/Footer';
 import { FaYoutube, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 
@@ -119,93 +119,114 @@ export default function Insight() {
   return (
     <div>
       {/* First Section */}
-      <section className="relative py-16 px-6 bg-green-400 overflow-hidden">
-        {/* Decorative blobs - green */}
-        <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      <section className="relative py-16 px-6 overflow-hidden">
+  {/* Orange Background (left side) */}
+  <div
+    className="absolute inset-0 bg-orange-500"
+    style={{
+      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Orange = 70%
+    }}
+  ></div>
 
-        {/* Decorative blobs - orange */}
-        <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
+  {/* Green Background (right side, slanted) */}
+  <div
+    className="absolute inset-0 bg-green-900"
+    style={{
+      clipPath:
+        window.innerWidth >= 768
+          ? "polygon(55% 0, 100% 0, 100% 100%, 48% 100%)" // Slanted on desktop
+          : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)", // Straight on mobile
+    }}
+  ></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto text-center">
-          {/* Heading */}
-          <h2 className="text-4xl font-bold text-gray-800 mb-12 text-left">
-          Featured This{" "}
-          <span className="relative inline-block text-orange-500">
-            Week
-            {/* Image directly below "Week" */}
-            <img
-              src="/images/design.png"
-              alt="Featured Week"
-              className="block w-full max-w-[100px] mt-2"
-            />
-          </span>
-        </h2>
-          {/* Grid with 3 items */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Item 1 */}
-            <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-                EPCs
-              </div>
-              <img
-                src="/images/insightHome1.jpg"
-                alt="Industrial Cooker"
-                className="w-full h-72 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800">
-                  Industrial Cooker
-                </h3>
-                <p className="text-gray-600 text-base mt-3">
-                  High-efficiency cookers for industrial kitchens.
-                </p>
-              </div>
-            </div>
+  {/* Decorative blobs - green */}
+  <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+  <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
 
-            {/* Item 2 */}
-            <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-                Induction Cookers
-              </div>
-              <img
-                src="/images/insightHome2.jpg"
-                alt="Steam Cooker"
-                className="w-full h-72 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800">
-                  Steam Cooker
-                </h3>
-                <p className="text-gray-600 text-base mt-3">
-                  Designed for sustainable steaming solutions.
-                </p>
-              </div>
-            </div>
+  {/* Decorative blobs - orange */}
+  <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+  <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
 
-            {/* Item 3 */}
-            <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-              <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-                Steam Cooking
-              </div>
-              <img
-                src="/images/insightHome3.jpg"
-                alt="Eco Kitchen System"
-                className="w-full h-72 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800">
-                  Eco Kitchen System
-                </h3>
-                <p className="text-gray-600 text-base mt-3">
-                  Tailored eco-friendly kitchen solutions.
-                </p>
-              </div>
-            </div>
-          </div>
+  <div className="relative z-10 max-w-6xl mx-auto text-center">
+    {/* Heading */}
+    <h2 className="text-4xl font-bold text-gray-200 mb-12 text-left">
+      Featured This{" "}
+      <span className="relative inline-block text-green-800">
+        Week
+        {/* Image directly below "Week" */}
+        <img
+          src="/images/design.png"
+          alt="Featured Week"
+          className="block w-full max-w-[100px] mt-2"
+        />
+      </span>
+    </h2>
+
+    {/* Grid with 3 items */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* Item 1 */}
+      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+          EPCs
         </div>
-      </section>
+        <img
+          src="/images/insightHome1.jpg"
+          alt="Industrial Cooker"
+          className="w-full h-72 object-cover"
+        />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-800">
+            Industrial Cooker
+          </h3>
+          <p className="text-gray-600 text-base mt-3">
+            High-efficiency cookers for industrial kitchens.
+          </p>
+        </div>
+      </div>
+
+      {/* Item 2 */}
+      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+          Induction Cookers
+        </div>
+        <img
+          src="/images/insightHome2.jpg"
+          alt="Steam Cooker"
+          className="w-full h-72 object-cover"
+        />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-800">
+            Steam Cooker
+          </h3>
+          <p className="text-gray-600 text-base mt-3">
+            Designed for sustainable steaming solutions.
+          </p>
+        </div>
+      </div>
+
+      {/* Item 3 */}
+      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+          Steam Cooking
+        </div>
+        <img
+          src="/images/insightHome3.jpg"
+          alt="Eco Kitchen System"
+          className="w-full h-72 object-cover"
+        />
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-800">
+            Eco Kitchen System
+          </h3>
+          <p className="text-gray-600 text-base mt-3">
+            Tailored eco-friendly kitchen solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Second Section */}
        <section className="bg-gray-50 py-16 px-6">

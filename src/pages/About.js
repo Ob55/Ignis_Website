@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { FaUniversity, FaHandshake, FaLeaf, FaLinkedin } from "react-icons/fa";
-import Footer from '../ components/Footer';
+import { motion, AnimatePresence } from "framer-motion";
+
+import Footer from '../components/Footer';
 
 export default function About() {
   const [selected, setSelected] = useState("institutional");
+    const [showVision, setShowVision] = useState(false);
+
+
+        useEffect(() => {
+    const id = setInterval(() => setShowVision((p) => !p), 8000);
+    return () => clearInterval(id);
+  }, []);
+
 
   const content = {
     institutional: {
@@ -27,49 +37,114 @@ export default function About() {
       <div className="absolute top-1/2 right-[33%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-40 animate-pulse-slow blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
 
       {/* Main Content */}
-      <div className="relative z-10 pt-14">
+    <div className="relative z-10">
 
         {/* Mission & Vision Section */}
-        <div className="container mx-auto px-6 md:px-14">
-          <div className="bg-green-700 rounded-3xl shadow-2xl overflow-hidden text-white">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="p-12 md:p-24 border-b md:border-b-0 md:border-r border-green-600">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  <span className="text-white">Our </span>
-                  <span className="relative inline-block text-orange-500">
-                    Mission
-                    {/* Image directly below "Mission" */}
-                    <img
-                      src="/images/design.png"
-                      alt="Design"
-                      className="block mx-auto w-full max-w-[130px] mt-2"
-                    />
-                  </span>
-                </h2>
-                <p className="text-lg md:text-xl leading-relaxed">
-                  Ignis Innovation accelerates clean institutional kitchens and electric cooking at home by combining fit-for-purpose technology, training, digital monitoring, and access to finance and carbon incentives.
-                </p>
-              </div>
-              <div className="p-12 md:p-24">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-white">Our </span>
-                <span className="relative inline-block text-orange-500">
-                  Vision
-                  {/* Image directly below "Mission" */}
-                  <img
-                    src="/images/design.png"
-                    alt="Design"
-                    className="block mx-auto w-full max-w-[130px] mt-2"
-                  />
-                </span>
-              </h2>
-                <p className="text-lg md:text-xl leading-relaxed">
-                  To design, manufacture, and deploy innovative steam-based kitchen systems and e-cooking products that make clean, reliable cooking the default across Africa.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+   <div className="relative w-full text-white m-0 p-0 overflow-hidden">
+  {/* Orange Background (left side) */}
+  <div
+    className="absolute inset-0 bg-orange-500"
+    style={{
+      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Mobile default (straight)
+    }}
+  ></div>
+
+  {/* Green Background (right side, slanted on desktop) */}
+  <div
+    className="absolute inset-0 bg-green-900 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
+  ></div>
+
+  {/* Content grid */}
+  <div className="relative grid grid-cols-1 md:grid-cols-2">
+    {/* Left side: Mission / Vision */}
+    <div className="flex flex-col items-start justify-center px-8 md:px-16 py-12 md:py-24 md:pl-28">
+      <AnimatePresence mode="wait">
+        <motion.h2
+          key={showVision ? "vision-h" : "mission-h"}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-extrabold mb-6 ml-6"
+        >
+          <span className="text-white">Our </span>
+          <span className="relative inline-block text-white-500">
+            {showVision ? "Vision" : "Mission"}
+          </span>
+        </motion.h2>
+      </AnimatePresence>
+
+      {/* underline image */}
+      <motion.img
+        src="/images/design.png"
+        alt="Design underline"
+        className="block w-full max-w-[150px] mb-8 ml-[130px]"
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      />
+
+      <AnimatePresence mode="wait">
+        {showVision ? (
+          <motion.p
+            key="vision-text"
+            className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.6 }}
+          >
+            To design, manufacture, and deploy innovative <br />
+            steam-based kitchen systems and e-cooking products <br />
+            that make clean, reliable cooking the default <br />
+            across Africa.
+          </motion.p>
+        ) : (
+          <motion.p
+            key="mission-text"
+            className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.6 }}
+          >
+            Ignis Innovation accelerates clean institutional <br />
+            kitchens and electric cooking at home <br />
+            by combining fit-for-purpose technology, training, <br />
+            digital monitoring, and access to finance and carbon incentives.
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+
+    {/* Right side: Image box with circle */}
+    <div className="flex items-center justify-center px-8 md:px-16 py-12 md:py-24 relative">
+      {/* Decorative circle */}
+      <div
+        className="absolute left-[10rem] top-1/3 w-56 h-56 rounded-full"
+        style={{ backgroundColor: "rgba(182, 246, 166, 1)" }}
+      />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={showVision ? "vision-img" : "mission-img"}
+          initial={{ opacity: 0, scale: 0.92, rotate: -4 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          exit={{ opacity: 0, scale: 0.92, rotate: 4 }}
+          transition={{ duration: 0.8 }}
+          className="w-full max-w-md h-80 bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-green-600 relative z-10 flex items-center justify-center"
+        >
+          <img
+            src={showVision ? "/images/AboutH.png" : "/images/AboutH.png"}
+            alt={showVision ? "Vision Visual" : "Mission Visual"}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  </div>
+</div>
+
 
         {/* Track Record Section */}
         <section className="mt-20 py-16 relative">
@@ -221,42 +296,80 @@ export default function About() {
     </span>
   </h2>
 
-  {/* Team Grid (3 columns) */}
+  {/* Team Grid */}
   <div className="container mx-auto px-6 md:px-14">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
       {[
-        { name: "Paul", dept: "CEO", img: "/images/paul.jpg", desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation, where he provides overall strategic leadership and operational management to advance the organization’s mission of scaling clean cooking technologies including Institutional Steam Cooking systems, Electric Pressure Cookers (EPCs), and Induction Cookers across Kenya and Africa.", linkedin: "https://www.linkedin.com/in/paul-osogo-a5451933/" },
-        { name: "Dennis", dept: "Managing Director", img: "/images/Dennis.jpg", desc: "Dennis Nderitu is Managing Director at Ignis Innovation, where he leads pipeline development, financing, and monitoring for clean cooking and productive use appliances. With a decade of experience in energy and climate, Dennis works with a multidisciplinary team to deliver electric appliances that unlock household and business potential. Ignis integrates financing solutions with digital monitoring for carbon finance and efficiency, taking a data-driven and consumer-intimate approach to scale adoption, reduce costs, and accelerate Africa’s transition to modern energy.", linkedin: "https://www.linkedin.com/in/dennis-nderitu-8528a860/" },
-        { name: "Sheila", dept: "Chief of Staff", img: "/images/Sheila.jpg", desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations, partnering with leadership to shape strategy, build high-performing teams, and accelerate execution. With expertise in human capital management and business process optimization, she creates systems that empower people and drive scale. Passionate about aligning culture with strategy, Sheila ensures every initiative strengthens efficiency and long-term impact. At Ignis, she plays a pivotal role in translating vision into results and positioning the company for sustainable growth.", linkedin: "https://www.linkedin.com/in/sheila-kamaara/" },
-        { name: "Fredrick Agengo", dept: "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",img: "/images/Dr Fred.jpg",  desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking. Coordinates training, research, and community engagement while fostering innovation and partnerships in clean energy.",  linkedin: "#"},
-        { name: "Selah", dept: "Software Engineer", img: "/images/Selah.jpg", desc: "Drives product strategy", linkedin: "https://www.linkedin.com/in/sharon-selah/" },
-        { name: "Shadrack", dept: "DMRV Lead", img: "/images/Shadrak.jpg", desc: "Builds and scales systems", linkedin: "https://www.linkedin.com/in/shadrack-amihanda-835829204/" },
+        {
+          name: "Paul",
+          dept: "CEO",
+          img: "/images/paul.jpg",
+          desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
+          linkedin:
+            "https://www.linkedin.com/in/paul-osogo-a5451933/",
+        },
+        {
+          name: "Dennis",
+          dept: "Managing Director",
+          img: "/images/Dennis.jpg",
+          desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
+          linkedin:
+            "https://www.linkedin.com/in/dennis-nderitu-8528a860/",
+        },
+        {
+          name: "Sheila",
+          dept: "Chief of Staff",
+          img: "/images/Sheila.jpg",
+          desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
+          linkedin:
+            "https://www.linkedin.com/in/sheila-kamaara/",
+        },
+        {
+          name: "Fredrick Agengo",
+          dept:
+            "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
+          img: "/images/Dr Fred.jpg",
+          desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
+          linkedin: "#",
+        },
+        {
+          name: "Selah",
+          dept: "Software Engineer",
+          img: "/images/Selah.jpg",
+          desc: "Drives product strategy",
+          linkedin:
+            "https://www.linkedin.com/in/sharon-selah/",
+        },
+        {
+          name: "Shadrack",
+          dept: "DMRV Lead",
+          img: "/images/Shadrak.jpg",
+          desc: "Builds and scales systems",
+          linkedin:
+            "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
+        },
       ].map((member, idx) => (
         <div
           key={idx}
-          className="relative group w-full bg-white rounded-xl shadow-lg overflow-hidden border border-orange-400"
+          className="relative group flex flex-col items-center"
         >
           {/* Profile Image */}
           <img
             src={member.img}
             alt={member.name}
-            className="w-full h-80 object-cover"
+            className="w-40 h-40 object-cover rounded-full border-4 border-green-600 shadow-lg transition-transform duration-500 group-hover:scale-105"
           />
 
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center text-white px-4 py-6 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 overflow-y-auto">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center p-4">
             <h3 className="text-lg font-bold">{member.name}</h3>
-            <p className="text-sm font-medium text-orange-300">{member.dept}</p>
-
-            {/* Bio (no scroll inside card, takes natural height) */}
-            <p className="mt-3 text-xs leading-relaxed">{member.desc}</p>
-
-            {/* LinkedIn */}
+            <p className="text-sm text-orange-300">{member.dept}</p>
+            <p className="mt-2 text-xs">{member.desc}</p>
             <a
               href={member.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 text-blue-400 hover:text-blue-500"
+              className="mt-2 text-blue-400 hover:text-blue-500"
             >
               <FaLinkedin size={20} />
             </a>
@@ -266,6 +379,7 @@ export default function About() {
     </div>
   </div>
 </section>
+
 
       </div>
       </div>

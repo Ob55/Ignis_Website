@@ -1,19 +1,17 @@
-import Footer from '../ components/Footer';
+import Footer from '../components/Footer';
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion";
+
 
 
 
 export default function Home() {
-  const [imageIndex, setImageIndex] = useState(0);
+  const [, setImageIndex] = useState(0);
     const images = [
-      "/images/homepage1.webp",
-      "/images/cooker.webp",
-      "/images/homePage2.webp",
-      "/images/homePage3.webp",
-      "/images/homePage4.webp",
+     
     ];
 
   // For "What we offer" section (right side nav images)
@@ -118,50 +116,121 @@ const testimonials = [
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-orange-400 bg-opacity-60 overflow-hidden">
-        <div className="container mx-auto flex flex-col md:flex-row items-center py-20 px-6 md:px-12">
-          {/* Left side text */}
-          <div className="md:w-1/2 text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-semibold text-black mb-6">
-              Clean, modern kitchens for Africa’s institutions and homes{" "}
-              <span className="font-bold text-green-700">Ignis Innovation</span>
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-gray-900">
-              Designs and deploys steam-based institutional kitchens and efficient electric appliances for households—backed by digital monitoring, training, and after-sales service.
-            </p>
-            <div className="flex justify-center md:justify-start gap-4">
-              <button
-              className="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-900 transition"
-              onClick={() => navigate("/contact")}
-            >
-              Talk To Our Team
-            </button>
-              <button
-              className="bg-yellow-200 text-black px-6 py-3 rounded-lg hover:bg-yellow-300 transition"
-              onClick={() => navigate("/Product ")}
-            >
-              Shop Household Appliances
-            </button>
-            </div>
-          </div>
+    {/* <section className="relative bg-green-900 text-white m-0 p-0 overflow-hidden">
+  <div className="flex flex-col md:flex-row items-center h-full">
+    <div className="md:w-1/2 flex flex-col justify-center text-center md:text-left px-6 md:px-12 py-16 md:py-24">
+      <h1 className="text-3xl md:text-5xl font-semibold text-white mb-6">
+        Clean, modern kitchens for Africa’s institutions and homes{" "}
+        <span className="font-bold text-orange-500">Ignis Innovation</span>
+      </h1>
+      <p className="text-lg md:text-xl mb-8 text-green-100">
+        Designs and deploys steam-based institutional kitchens and efficient
+        electric appliances for households—backed by digital monitoring,
+        training, and after-sales service.
+      </p>
+      <div className="flex justify-center md:justify-start gap-4">
+        <button
+          className="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-900 transition"
+          onClick={() => navigate("/contact")}
+        >
+          Talk To Our Team
+        </button>
+        <button
+          className="bg-yellow-200 text-black px-6 py-3 rounded-lg hover:bg-yellow-300 transition"
+          onClick={() => navigate("/product")}
+        >
+          Shop Household Appliances
+        </button>
+      </div>
+    </div>
 
-          {/* Right side image (Hero slideshow) */}
-          <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end relative w-[500px] h-[500px] md:mr-12">
-            {images.map((src, index) => (
-              <img
-                key={index}
-                src={src}
-                alt="Industrial Kitchen"
-                className={`absolute top-0 left-0 w-full h-full rounded-full object-cover shadow-2xl transition-opacity duration-1000 ease-in-out transform ${
-                  index === imageIndex
-                    ? "opacity-100 scale-100 z-10"
-                    : "opacity-0 scale-95 z-0"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+    <div className="md:w-1/2 w-full h-[300px] md:h-[600px] relative">
+      {images.map((src, index) => (
+        <img
+          key={index}
+          src={src}
+          alt="Industrial Kitchen"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+            index === imageIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+          style={{
+            clipPath:
+              window.innerWidth >= 768
+                ? "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)"
+                : "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          }}
+        />
+      ))}
+    </div>
+  </div>
+</section> */}
+<section className="relative bg-green-900 text-white m-0 p-0 overflow-hidden min-h-screen">
+  {/* Background Video */}
+  <video
+    className="absolute inset-0 w-full h-full object-cover"
+    src="/images/HomePageVideo.mp4"
+    autoPlay
+    loop
+    muted
+    playsInline
+  />
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  <div className="relative flex flex-col md:flex-row items-center h-full">
+    {/* Left side text */}
+    <div
+      className="md:w-1/2 flex flex-col justify-center text-center md:text-left 
+                 px-6 md:px-16 py-20 md:py-40 relative z-10 mt-12 md:mt-20"
+    >
+      <motion.h1
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-4xl md:text-6xl font-extrabold text-white mb-8 leading-tight"
+      >
+        Clean, modern kitchens for Africa’s institutions and homes{" "}
+        <span className="font-bold text-orange-500">Ignis Innovation</span>
+      </motion.h1>
+
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="text-lg md:text-2xl mb-10 text-green-100 max-w-2xl"
+      >
+        Designs and deploys steam-based institutional kitchens and efficient
+        electric appliances for households—backed by digital monitoring,
+        training, and after-sales service.
+      </motion.p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2, delay: 1 }}
+        className="flex justify-center md:justify-start gap-6"
+      >
+        <button
+          className="bg-green-800 text-white px-8 py-4 rounded-lg text-lg hover:bg-green-900 transition"
+          onClick={() => navigate("/contact")}
+        >
+          Talk To Our Team
+        </button>
+        <button
+          className="bg-yellow-200 text-black px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition"
+          onClick={() => navigate("/product")}
+        >
+          Shop Household Appliances
+        </button>
+      </motion.div>
+    </div>
+
+    {/* Right side filler */}
+    <div className="md:w-1/2 w-full h-[350px] md:h-[700px]"></div>
+  </div>
+</section>
+
 
       {/* Our Metrics Section */}
    <section className="relative py-12 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
