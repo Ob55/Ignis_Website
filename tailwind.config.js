@@ -17,6 +17,11 @@ module.exports = {
       animation: {
         "shake-slow": "shake 3s ease-in-out infinite",
       },
+      colors: {
+        primary: {
+          500: "rgba(0, 113, 45, 1)",
+        },
+      },
     },
   },
   plugins: [],

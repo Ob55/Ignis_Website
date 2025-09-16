@@ -147,50 +147,91 @@ export default function About() {
 
 
         {/* Track Record Section */}
-        <section className="mt-20 py-16 relative">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            Our{" "}
-            <span className="relative inline-block text-orange-500">
-              Track Record
-              {/* Image directly below "Track Record" */}
-              <img
-                src="/images/design.png"
-                alt="Design"
-                className="block mx-auto w-full max-w-[160px] mt-2"
-              />
-            </span>
-          </h2>
+            <section className="mt-20 py-16 relative">
+      <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+        Our{" "}
+        <span className="relative inline-block text-orange-500">
+          Track Record
+          <img
+            src="/images/design.png"
+            alt="Design"
+            className="block mx-auto w-full max-w-[160px] mt-2"
+          />
+        </span>
+      </h2>
 
-          <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-12 relative">
-            <div className="flex flex-col items-center">
-              <FaUniversity className="text-green-500 text-6xl mb-2" />
-              <h3 className="text-lg font-bold mb-1">Institutions</h3>
-              <p className="text-gray-600 text-center max-w-xs">
-                We have worked with multiple educational and institutional kitchens across the continent.
-              </p>
-            </div>
-            <div className="hidden md:flex items-center">
-              <div className="w-24 h-1 bg-gray-400"></div>
-            </div>
-            <div className="flex flex-col items-center">
-              <FaHandshake className="text-green-500 text-6xl mb-2" />
-              <h3 className="text-lg font-bold mb-1">Partners</h3>
-              <p className="text-gray-600 text-center max-w-xs">
-                Collaborating with reliable partners to ensure innovative and efficient solutions.
-              </p>
-            </div>
-            <div className="hidden md:flex items-center">
-              <div className="w-24 h-1 bg-gray-400"></div>
-            </div>
-            <div className="flex flex-col items-center">
-              <FaLeaf className="text-green-500 text-6xl mb-2" />
-              <h3 className="text-lg font-bold mb-1">Emissions</h3>
-              <p className="text-gray-600 text-center max-w-xs">
-                Reducing carbon emissions through clean and sustainable cooking technologies.
-              </p>
-            </div>
-          </div>
-        </section>
+      <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-12 relative">
+        {/* Institutions */}
+        <motion.div
+          className="flex flex-col items-center"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <FaUniversity className="text-green-500 text-6xl mb-2" />
+          <h3 className="text-lg font-bold mb-1">Institutions</h3>
+          <p className="text-gray-600 text-center max-w-xs">
+            We have worked with multiple educational and institutional kitchens
+            across the continent.
+          </p>
+        </motion.div>
+
+        {/* Line 1 */}
+        <motion.div
+          className="hidden md:flex items-center"
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-24 h-1 bg-gray-400 origin-left"></div>
+        </motion.div>
+
+        {/* Partners */}
+        <motion.div
+          className="flex flex-col items-center"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <FaHandshake className="text-green-500 text-6xl mb-2" />
+          <h3 className="text-lg font-bold mb-1">Partners</h3>
+          <p className="text-gray-600 text-center max-w-xs">
+            Collaborating with reliable partners to ensure innovative and efficient solutions.
+          </p>
+        </motion.div>
+
+        {/* Line 2 */}
+        <motion.div
+          className="hidden md:flex items-center"
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-24 h-1 bg-gray-400 origin-left"></div>
+        </motion.div>
+
+        {/* Emissions */}
+        <motion.div
+          className="flex flex-col items-center"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          viewport={{ once: true }}
+        >
+          <FaLeaf className="text-green-500 text-6xl mb-2" />
+          <h3 className="text-lg font-bold mb-1">Emissions</h3>
+          <p className="text-gray-600 text-center max-w-xs">
+            Reducing carbon emissions through clean and sustainable cooking
+            technologies.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+
 
         {/* How Products Work Section */}
         <section className="mt-20 py-16 relative bg-orange-100">
