@@ -1,6 +1,5 @@
 import React from "react";
 
-// Importing your images directly from src folder
 import Articles1 from "../ArticalImages/Aimages/Articles1.jpg";
 import Articles2 from "../ArticalImages/Aimages/Articles2.jpg";
 import Articles3 from "../ArticalImages/Aimages/Articles3.jpg";
