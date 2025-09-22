@@ -1,9 +1,40 @@
 import { useState } from "react";
 import Footer from '../components/Footer';
 import { FaYoutube, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion"
 
 
 export default function Insight() {
+
+  // Animation variants for list items
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+ const fadeInVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { duration: 0.2 } },
+  };
+
+    // Animation variants
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  },
+};
+ // Container variant for staggering
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.4,
+    },
+  },
+};
+
   // Images as objects with metadata
   const images = [
     {
@@ -120,150 +151,180 @@ export default function Insight() {
     <div>
       {/* First Section */}
       <section className="relative py-16 px-6 overflow-hidden">
-  {/* Orange Background (left side) */}
-  <div
-    className="absolute inset-0 bg-orange-500"
-    style={{
-      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Orange = 70%
-    }}
-  ></div>
+      {/* Orange Background (left side) */}
+      <div
+        className="absolute inset-0 bg-orange-500"
+        style={{
+          clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)",
+        }}
+      ></div>
 
-  {/* Green Background (right side, slanted) */}
-  <div
-    className="absolute inset-0 bg-green-900"
-    style={{
-      clipPath:
-        window.innerWidth >= 768
-          ? "polygon(55% 0, 100% 0, 100% 100%, 48% 100%)" // Slanted on desktop
-          : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)", // Straight on mobile
-    }}
-  ></div>
+      {/* Green Background (right side, slanted) */}
+      <div
+        className="absolute inset-0 bg-green-900"
+        style={{
+          clipPath:
+            window.innerWidth >= 768
+              ? "polygon(55% 0, 100% 0, 100% 100%, 48% 100%)"
+              : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)",
+        }}
+      ></div>
 
-  {/* Decorative blobs - green */}
-  <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-  <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      {/* Decorative blobs */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
 
-  {/* Decorative blobs - orange */}
-  <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-  <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
+      <div className="relative z-10 max-w-6xl mx-auto text-center">
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-4xl font-bold text-gray-200 mb-12 text-left"
+        >
+          Featured This{" "}
+          <span className="relative inline-block text-green-800">
+            Week
+            <img
+              src="/images/design.png"
+              alt="Featured Week"
+              className="block w-full max-w-[100px] mt-2"
+            />
+          </span>
+        </motion.h2>
 
-  <div className="relative z-10 max-w-6xl mx-auto text-center">
-    {/* Heading */}
-    <h2 className="text-4xl font-bold text-gray-200 mb-12 text-left">
-      Featured This{" "}
-      <span className="relative inline-block text-green-800">
-        Week
-        {/* Image directly below "Week" */}
-        <img
-          src="/images/design.png"
-          alt="Featured Week"
-          className="block w-full max-w-[100px] mt-2"
-        />
-      </span>
-    </h2>
+        {/* Grid with 3 items */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-10"
+        >
+          {/* Item 1 */}
+          <motion.div
+            variants={cardVariants}
+            className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+              EPCs
+            </div>
+            <img
+              src="/images/insightHome1.jpg"
+              alt="Industrial Cooker"
+              className="w-full h-72 object-cover"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800">
+                Industrial Cooker
+              </h3>
+              <p className="text-gray-600 text-base mt-3">
+                High-efficiency cookers for industrial kitchens.
+              </p>
+            </div>
+          </motion.div>
 
-    {/* Grid with 3 items */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-      {/* Item 1 */}
-      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-          EPCs
-        </div>
-        <img
-          src="/images/insightHome1.jpg"
-          alt="Industrial Cooker"
-          className="w-full h-72 object-cover"
-        />
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-800">
-            Industrial Cooker
-          </h3>
-          <p className="text-gray-600 text-base mt-3">
-            High-efficiency cookers for industrial kitchens.
-          </p>
-        </div>
+          {/* Item 2 */}
+          <motion.div
+            variants={cardVariants}
+            className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+              Induction Cookers
+            </div>
+            <img
+              src="/images/insightHome2.jpg"
+              alt="Steam Cooker"
+              className="w-full h-72 object-cover"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800">
+                Steam Cooker
+              </h3>
+              <p className="text-gray-600 text-base mt-3">
+                Designed for sustainable steaming solutions.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Item 3 */}
+          <motion.div
+            variants={cardVariants}
+            className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
+          >
+            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+              Steam Cooking
+            </div>
+            <img
+              src="/images/insightHome3.jpg"
+              alt="Eco Kitchen System"
+              className="w-full h-72 object-cover"
+              loading="lazy"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-semibold text-gray-800">
+                Eco Kitchen System
+              </h3>
+              <p className="text-gray-600 text-base mt-3">
+                Tailored eco-friendly kitchen solutions.
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
-
-      {/* Item 2 */}
-      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-          Induction Cookers
-        </div>
-        <img
-          src="/images/insightHome2.jpg"
-          alt="Steam Cooker"
-          className="w-full h-72 object-cover"
-        />
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-800">
-            Steam Cooker
-          </h3>
-          <p className="text-gray-600 text-base mt-3">
-            Designed for sustainable steaming solutions.
-          </p>
-        </div>
-      </div>
-
-      {/* Item 3 */}
-      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
-          Steam Cooking
-        </div>
-        <img
-          src="/images/insightHome3.jpg"
-          alt="Eco Kitchen System"
-          className="w-full h-72 object-cover"
-        />
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-800">
-            Eco Kitchen System
-          </h3>
-          <p className="text-gray-600 text-base mt-3">
-            Tailored eco-friendly kitchen solutions.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
       {/* Second Section */}
-       <section className="bg-gray-50 py-16 px-6">
+        <section className="bg-gray-50 py-16 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Tabs */}
-        <div className="flex gap-6 mb-8 border-b border-gray-300">
-  <button
-    onClick={() => setActiveTab("articles")}
-    className={`pb-2 font-semibold ${
-      activeTab === "articles"
-        ? "text-green-600 border-b-2 border-green-600"
-        : "text-gray-600 hover:text-green-600"
-    }`}
-  >
-    Articles
-  </button>
-  <button
-    onClick={() => setActiveTab("videos")}
-    className={`pb-2 font-semibold ${
-      activeTab === "videos"
-        ? "text-green-600 border-b-2 border-green-600"
-        : "text-gray-600 hover:text-green-600"
-    }`}
-  >
-    Videos
-  </button>
-</div>
-
+        <motion.div
+          className="flex gap-6 mb-8 border-b border-gray-300"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={fadeInVariants}
+        >
+          <button
+            onClick={() => setActiveTab("articles")}
+            className={`pb-2 font-semibold ${
+              activeTab === "articles"
+                ? "text-green-600 border-b-2 border-green-600"
+                : "text-gray-600 hover:text-green-600"
+            }`}
+          >
+            Articles
+          </button>
+          <button
+            onClick={() => setActiveTab("videos")}
+            className={`pb-2 font-semibold ${
+              activeTab === "videos"
+                ? "text-green-600 border-b-2 border-green-600"
+                : "text-gray-600 hover:text-green-600"
+            }`}
+          >
+            Videos
+          </button>
+        </motion.div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-4 gap-8"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
           {/* LEFT COLUMN */}
-          <div className="col-span-1 space-y-6">
+          <motion.div className="col-span-1 space-y-6" variants={itemVariants}>
             {activeTab === "articles" ? (
               <>
                 {/* Main Article */}
-                <div className="cursor-pointer">
+                <motion.div className="cursor-pointer" variants={itemVariants}>
                   <img
                     src={currentImages[0].src}
                     alt={currentImages[0].title}
@@ -271,12 +332,12 @@ export default function Insight() {
                   />
                   <h3 className="mt-2 font-bold text-lg">{currentImages[0].title}</h3>
                   <p className="text-gray-600 text-sm">{currentImages[0].description}</p>
-                </div>
+                </motion.div>
 
                 {/* Other Small Articles */}
-                <div className="space-y-4">
+                <motion.div className="space-y-4" variants={containerVariants}>
                   {currentImages.slice(1).map((item, i) => (
-                    <div key={i} className="flex gap-3 cursor-pointer">
+                    <motion.div key={i} className="flex gap-3 cursor-pointer" variants={itemVariants}>
                       <img
                         src={item.src}
                         alt={item.title}
@@ -286,14 +347,14 @@ export default function Insight() {
                         <p className="text-base text-gray-800 font-medium">{item.title}</p>
                         <span className="text-gray-500 text-sm">{item.description}</span>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </>
             ) : (
               <>
                 {/* Main Video */}
-                <div className="cursor-pointer">
+                <motion.div className="cursor-pointer" variants={itemVariants}>
                   <img
                     src={videos[0].thumbnail}
                     alt={videos[0].title}
@@ -301,12 +362,12 @@ export default function Insight() {
                   />
                   <h3 className="mt-2 font-bold text-lg">{videos[0].title}</h3>
                   <p className="text-gray-600 text-sm">{videos[0].description}</p>
-                </div>
+                </motion.div>
 
                 {/* Other Videos */}
-                <div className="space-y-4">
+                <motion.div className="space-y-4" variants={containerVariants}>
                   {videos.slice(1).map((vid, i) => (
-                    <div key={i} className="flex gap-3 cursor-pointer">
+                    <motion.div key={i} className="flex gap-3 cursor-pointer" variants={itemVariants}>
                       <img
                         src={vid.thumbnail}
                         alt={vid.title}
@@ -316,15 +377,15 @@ export default function Insight() {
                         <p className="text-base text-gray-800 font-medium">{vid.title}</p>
                         <span className="text-gray-500 text-sm">{vid.description}</span>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </>
             )}
-          </div>
+          </motion.div>
 
           {/* MIDDLE COLUMN */}
-          <div className="col-span-2">
+          <motion.div className="col-span-2" variants={itemVariants}>
             <h2 className="text-2xl font-bold mb-4">
               {activeTab === "articles" ? "Article Title Goes Here" : "Video Title Goes Here"}
             </h2>
@@ -333,16 +394,16 @@ export default function Insight() {
                 ? "This is where the article description or main body text will appear."
                 : "This is where video details or description will appear."}
             </p>
-          </div>
+          </motion.div>
 
           {/* RIGHT COLUMN */}
-          <div className="col-span-1 space-y-8">
+          <motion.div className="col-span-1 space-y-8" variants={itemVariants}>
             {/* Profiles */}
-            <div>
+            <motion.div variants={itemVariants}>
               <h3 className="font-bold text-lg mb-3">Most Watched</h3>
               <div className="space-y-5">
                 {profiles.map((person, i) => (
-                  <div key={i} className="flex gap-3 items-start">
+                  <motion.div key={i} className="flex gap-3 items-start" variants={itemVariants}>
                     <img
                       src={person.image}
                       alt={person.name}
@@ -363,13 +424,13 @@ export default function Insight() {
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Categories */}
-            <div>
+            <motion.div variants={itemVariants}>
               <h3 className="font-bold text-lg mb-3">Categories</h3>
               <ul className="space-y-2">
                 <li className="flex justify-between text-sm">
@@ -385,31 +446,27 @@ export default function Insight() {
                   <span className="text-gray-500">5</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
 
             {/* Tags */}
-            <div>
+            <motion.div variants={itemVariants}>
               <h3 className="font-bold text-lg mb-3">Search with Tags</h3>
               <div className="grid grid-cols-2 gap-3">
-                <button className="px-3 py-2 bg-white border rounded-lg text-sm text-gray-700 hover:bg-orange-100 focus:bg-orange-500 focus:text-white transition">
-                  Industrial Cookers
-                </button>
-                <button className="px-3 py-2 bg-white border rounded-lg text-sm text-gray-700 hover:bg-orange-100 focus:bg-orange-500 focus:text-white transition">
-                  Steam Cookers
-                </button>
-                <button className="px-3 py-2 bg-white border rounded-lg text-sm text-gray-700 hover:bg-orange-100 focus:bg-orange-500 focus:text-white transition">
-                  Home Cookers
-                </button>
-                <button className="px-3 py-2 bg-white border rounded-lg text-sm text-gray-700 hover:bg-orange-100 focus:bg-orange-500 focus:text-white transition">
-                  Outdoor Cookers
-                </button>
+                {["Industrial Cookers","Steam Cookers","Home Cookers","Outdoor Cookers"].map((tag, i) => (
+                  <button
+                    key={i}
+                    className="px-3 py-2 bg-white border rounded-lg text-sm text-gray-700 hover:bg-orange-100 focus:bg-orange-500 focus:text-white transition"
+                  >
+                    {tag}
+                  </button>
+                ))}
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         {/* Pagination */}
-        <div className="flex justify-center mt-12 space-x-3">
+        <motion.div className="flex justify-center mt-12 space-x-3" variants={fadeInVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>
           <button
             className="px-3 py-1 border rounded-lg text-sm hover:bg-gray-100 disabled:opacity-50"
             onClick={() => setPage((p) => Math.max(p - 1, 0))}
@@ -435,7 +492,7 @@ export default function Insight() {
           >
             Next
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
     

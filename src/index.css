@@ -16,3 +16,17 @@ body {
 .Toastify__progress-bar--success {
   background: white !important;
 }
+@keyframes pulse-slow-soft {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.35;
+  }
+}
+
+.animate-pulse-slow-soft {
+  animation: pulse-slow-soft 8s ease-in-out infinite;
+}

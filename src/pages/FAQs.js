@@ -1,8 +1,9 @@
 import Footer from "../components/Footer";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const faqData = [
-  { question: "How long is the delivery period?", answer: "Households: 3 working days.<br />Institutional: ~2 months from contract (design, fabrication, installation, training)." },
+  { question: "How long is the delivery period?", answer: "Households: 3 working days.Institutional: ~2 months from contract (design, fabrication, installation, training)." },
   { question: "Efficiency: What savings should we expect?", answer: "Steam kitchens reduce fuel use and staff hours for large-batch cooking; EPCs/induction cut energy use vs. resistance/solid fuels. Actual savings depend on menu, volumes, tariff/fuel, and operating practices." },
   { question: "Returns & Warranties?", answer: "1-year warranty; manufacturing defects covered." },
   { question: "Maintenance?", answer: "Through Ignis hubs/workshops with qualified technicians; digital prompts help schedule preventive service." },
@@ -17,102 +18,82 @@ const faqData = [
 ];
 
 export default function FAQs() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
+  const [openIndex, setOpenIndex] = useState(null);
 
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentFAQs = faqData.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(faqData.length / itemsPerPage);
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <div>
       {/* Section 1: Sharp Split Header */}
-  <div className="relative w-full text-white text-center py-16 px-4 overflow-hidden">
-  {/* Orange Background (left side) */}
-  <div
-    className="absolute inset-0 bg-orange-500"
-    style={{
-      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Orange = 70%
-    }}
-  ></div>
+      <div className="relative w-full text-white text-center py-16 px-4 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-orange-500"
+          style={{ clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)" }}
+        ></div>
+        <div
+          className="absolute inset-0 bg-green-900"
+          style={{
+            clipPath:
+              window.innerWidth >= 768
+                ? "polygon(60% 0, 100% 0, 100% 100%, 55% 100%)"
+                : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)",
+          }}
+        ></div>
+        <h1 className="relative text-4xl md:text-6xl font-bold">
+          Frequently Asked Questions
+        </h1>
+      </div>
 
-  {/* Green Background (right side, slanted) */}
-  <div
-    className="absolute inset-0 bg-green-900"
-    style={{
-      clipPath:
-        window.innerWidth >= 768
-          ? "polygon(60% 0, 100% 0, 100% 100%, 55% 100%)" // Green smaller & slanted
-          : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)", // Mobile = straight
-    }}
-  ></div>
+      {/* Section 2: FAQ Accordion with animation */}
+      <div className="p-4 md:p-10 max-w-4xl mx-auto space-y-6">
+        {faqData.map((faq, index) => (
+           <motion.div
+              key={index}
+              className="border border-gray-200 rounded-lg shadow-sm p-4 md:p-6 bg-white"
+              initial={{ opacity: 0, x: index % 2 === 0 ? 120 : -120 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 3,         // slower (2s)
+                ease: "easeOut",     // smooth ease
+              }}
+              viewport={{ once: true, amount: 0.2 }} // triggers when 20% visible
+            >
+              {/* Question */}
+              <div
+                onClick={() => toggleFAQ(index)}
+                className="flex justify-between items-center cursor-pointer"
+              >
+                <h2 className="text-lg md:text-xl font-semibold text-gray-800">
+                  {faq.question}
+                </h2>
+                <span className="text-green-600 text-2xl">
+                  {openIndex === index ? "−" : "+"}
+                </span>
+              </div>
 
-  {/* Text on top */}
-  <h1 className="relative text-4xl md:text-6xl font-bold">
-    Frequently Asked Questions
-  </h1>
-</div>
+              {/* Answer with expand animation */}
+              <motion.div
+                initial={false}
+                animate={{
+                  height: openIndex === index ? "auto" : 0,
+                  opacity: openIndex === index ? 1 : 0,
+                }}
+                transition={{
+                  duration: 0.7,
+                  ease: "easeInOut",
+                }}
+                className="overflow-hidden"
+              >
+                <div
+                  className="mt-2 text-gray-700 text-base md:text-lg"
+                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                />
+        </motion.div>
+      </motion.div>
 
-
-
-
-      {/* Section 2: FAQ Table (responsive wrapper) */}
-      <div className="p-4 md:p-10 max-w-6xl mx-auto">
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 text-sm md:text-lg">
-            <thead className="bg-green-500 text-base md:text-xl">
-              <tr>
-                <th className="border px-3 md:px-6 py-2 md:py-3">#</th>
-                <th className="border px-3 md:px-6 py-2 md:py-3">Question</th>
-                <th className="border px-3 md:px-6 py-2 md:py-3">Answer</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentFAQs.map((faq, index) => (
-                <tr
-                  key={index}
-                  className="hover:bg-gray-50 text-sm md:text-lg"
-                >
-                  <td className="border px-3 md:px-6 py-2 md:py-4 text-center font-bold">
-                    {startIndex + index + 1}
-                  </td>
-                  <td className="border px-3 md:px-6 py-2 md:py-4 font-semibold">
-                    {faq.question}
-                  </td>
-                  <td
-                    className="border px-3 md:px-6 py-2 md:py-4 text-gray-700"
-                    dangerouslySetInnerHTML={{ __html: faq.answer }}
-                  ></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-            disabled={currentPage === 0}
-            className="px-4 py-2 md:px-6 md:py-3 bg-gray-300 rounded text-sm md:text-lg disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="text-sm md:text-lg">
-            Page {currentPage + 1} of {totalPages}
-          </span>
-          <button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
-            }
-            disabled={currentPage === totalPages - 1}
-            className="px-4 py-2 md:px-6 md:py-3 bg-gray-300 rounded text-sm md:text-lg disabled:opacity-50 hover:bg-gray-400"
-          >
-            Next
-          </button>
-        </div>
+        ))}
       </div>
 
       <Footer />

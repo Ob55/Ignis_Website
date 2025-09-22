@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom"
-import { motion } from "framer-motion";
+import { motion , AnimatePresence } from "framer-motion";
 
 
 
@@ -14,8 +14,71 @@ export default function Home() {
      
     ];
 
+   // Variants for partners section
+ const partnersContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
+};
+ /// Variants for each partner logo
+const partnerItem = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+
   // For "What we offer" section (right side nav images)
-  const [selectedOffer, setSelectedOffer] = useState("Institutional Steam Kitchens");
+const [selectedOffer, setSelectedOffer] = useState("Institutional Steam Kitchens");
+
+   // Variants for the whole list container
+const listVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.25, delayChildren: 0.15 },
+  },
+};
+
+// Variants for each benefit item
+const containerVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.25,
+      delayChildren: 0.15,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -40,
+    transition: { duration: 0.6, ease: "easeIn" },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: { duration: 0.5, ease: "easeIn" },
+  },
+};
+
 
   const offerImages = {
   "Institutional Steam Kitchens": "/images/Institutional Steam Kitchens.jpg",
@@ -107,7 +170,7 @@ const testimonials = [
   }, 10000);
 
   return () => clearInterval(interval);
-}, [images.length]); // ✅ added dependency
+}, [images.length]); 
 
 
   const navigate = useNavigate();
@@ -233,7 +296,7 @@ const testimonials = [
 
 
       {/* Our Metrics Section */}
-   <section className="relative py-12 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
+  <section className="relative py-12 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
   {/* Floating abstract blobs */}
   <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
@@ -255,30 +318,41 @@ const testimonials = [
   </div>
 
   {/* Image with overlay text */}
-<div className="w-full flex justify-center px-6 md:px-12 relative z-10">
-  <div className="relative w-full max-w-3xl">
-    <img
-      src="/images/map.png"
-      alt="Map"
-      className="w-full h-auto object-contain rounded-xl shadow-lg"
-    />
+  <div className="w-full flex justify-center px-6 md:px-12 relative z-10">
+    <div className="relative w-full max-w-3xl">
+      <img
+        src="/images/map.png"
+        alt="Map"
+        className="w-full h-auto object-contain rounded-xl shadow-lg"
+      />
 
-    {/* Left text around mid-left */}
-    <div className="absolute top-2/3 left-4 text-black-600 text-base md:text-lg font-semibold shadow-sm max-w-[200px] md:max-w-[250px] leading-snug">
-      Tanzania scale goal (by 2028): <br />
-      3,000 institutional systems & <br />
-      2,000,000 household units.
-    </div>
+      {/* Left text (Tanzania) */}
+      <motion.div
+        className="absolute top-2/3 left-4 bg-white rounded-xl shadow-md p-4 text-gray-800 text-sm md:text-base font-semibold max-w-[220px] md:max-w-[260px] leading-snug"
+        initial={{ opacity: 0, x: -120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        Tanzania scale goal (by 2028): <br />
+        3,000 institutional systems & <br />
+        2,000,000 household units.
+      </motion.div>
 
-    {/* Right text around mid-right */}
-    <div className="absolute top-1/3 right-4 text-black-600 text-base md:text-lg font-semibold shadow-sm max-w-[200px] md:max-w-[250px] leading-snug text-right">
-      Kenya scale goal (by 2027): <br />
-      6,000 institutional systems & <br />
-      500,000 household units.
+      {/* Right text (Kenya) */}
+      <motion.div
+        className="absolute top-1/3 right-4 bg-white rounded-xl shadow-md p-4 text-gray-800 text-sm md:text-base font-semibold max-w-[220px] md:max-w-[260px] leading-snug text-right"
+        initial={{ opacity: 0, x: 120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        Kenya scale goal (by 2027): <br />
+        6,000 institutional systems & <br />
+        500,000 household units.
+      </motion.div>
     </div>
   </div>
-</div>
-
 </section>
 
       {/* What We Offer Section */}
@@ -303,19 +377,31 @@ const testimonials = [
     />
   </span>
 </h2>
+        <AnimatePresence mode="wait">
+  <motion.div
+    key={selectedOffer} // changes when user clicks Services/Household/etc.
+    className="flex flex-col gap-6 mt-12"
+    variants={containerVariants}
+    initial="hidden"
+    animate="show"
+    exit="exit"
+    whileInView="show" // 👈 will trigger on scroll too
+    viewport={{ once: false, amount: 0.3 }}
+  >
+    {offerTexts[selectedOffer]?.map((text, idx) => (
+      <motion.div
+        key={idx}
+        variants={itemVariants}
+        className="flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full max-w-[700px] min-h-[70px]"
+      >
+        <CheckCircleIcon className="h-7 w-7 text-green-500 mr-4" />
+        {text}
+      </motion.div>
+    ))}
+  </motion.div>
+</AnimatePresence>
 
 
-      <div className="flex flex-col gap-6 mt-12">
-        {offerTexts[selectedOffer].map((text, idx) => (
-          <div
-            key={idx}
-            className="flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full max-w-[700px] min-h-[70px]"
-          >
-            <CheckCircleIcon className="h-7 w-7 text-green-500 mr-4" />
-            {text}
-          </div>
-        ))}
-      </div>
     </div>
 
     {/* Right side - Nav + Image */}
@@ -348,86 +434,108 @@ const testimonials = [
 
 
       {/* Why Steam Cooking Section */}
-<section className="overflow-x-hidden bg-gradient-to-r from-green-50 via-green-100 to-green-50 py-16">
-  <div className="container mx-auto text-center px-4 sm:px-6 md:px-12">
-  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
-  Why{" "}
-  <span className="relative inline-block text-green-500">
-    Steam
-    {/* Image directly below "Steam" */}
-    <img
-      src="/images/design.png"
-      alt="Design"
-      className="block mx-auto w-full max-w-[100px] mt-2"
-    />
-  </span>{" "}
-  Cooking?
-</h2>
+    <section className="overflow-x-hidden bg-gradient-to-r from-green-50 via-green-100 to-green-50 py-16">
+      <div className="container mx-auto text-center px-4 sm:px-6 md:px-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
+        Why{" "}
+        <span className="relative inline-block text-green-500">
+          Steam
+          {/* Image directly below "Steam" */}
+          <img
+            src="/images/design.png"
+            alt="Design"
+            className="block mx-auto w-full max-w-[100px] mt-2"
+          />
+          </span>{" "}
+          Cooking?
+        </h2>
 
-    <p className="text-gray-700 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-full sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed text-center">
-  Steam cooking is emerging as a game-changer for large institutions. It’s efficient, adaptable, and cleaner. Key benefits include:
-</p>
+            <p className="text-gray-700 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-full sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed text-center">
+          Steam cooking is emerging as a game-changer for large institutions. It’s efficient, adaptable, and cleaner. Key benefits include:
+        </p>
 
-  </div>
+          </div>
 
- <div className="relative flex flex-col md:flex-row justify-center items-center mt-14 px-7 md:gap-60 gap-10">
-  {/* Left Image */}
-  <img
-    src={benefitImages[selectedBenefit].left}
-    alt="Steam Cooking Left"
-    className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
-  />
+            <div className="relative flex flex-col md:flex-row justify-center items-center mt-14 px-7 md:gap-60 gap-10">
+              {/* Left Image */}
+              <img
+                src={benefitImages[selectedBenefit].left}
+                alt="Steam Cooking Left"
+                className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
+              />
 
-  {/* Center Content */}
-  <div className="flex flex-col gap-6 max-w-[600px] my-6 md:my-0">
-  {benefits.map((text) => (
-    <div
-      key={text}
-      onClick={() => setSelectedBenefit(text)}
-      className={`flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full min-h-[90px] cursor-pointer ${
-        selectedBenefit === text ? "border-2 border-green-500" : ""
-      }`}
-    >
-      <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4" />
-      {text}
-    </div>
-  ))}
-</div>
+              {/* Center Content */}
+            <motion.div
+              className="flex flex-col gap-6 max-w-[600px] my-6 md:my-0"
+              variants={listVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }} // 👈 triggers on scroll
+            >
+              {benefits.map((text) => (
+                <motion.div
+                  key={text}
+                  variants={itemVariants}
+                  onClick={() => setSelectedBenefit(text)}
+                  className={`flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full min-h-[90px] cursor-pointer ${
+                    selectedBenefit === text ? "border-2 border-green-500" : ""
+                  }`}
+                >
+                  <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4" />
+                  {text}
+                </motion.div>
+              ))}
+            </motion.div>
 
-  {/* Right Image */}
-  <img
-    src={benefitImages[selectedBenefit].right}
-    alt="Steam Cooking Right"
-    className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
-  />
-</div>
- 
-      </section>
+
+              {/* Right Image */}
+              <img
+                src={benefitImages[selectedBenefit].right}
+                alt="Steam Cooking Right"
+                className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
+              />
+            </div>
+    </section>
 
       {/* Our Partners */}
-     <section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-50 via-white to-green-50">
+<section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-50 via-white to-green-50">
+  {/* Background bubbles */}
   <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
   <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div>
 
   <div className="container mx-auto relative z-10 text-center px-6">
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
-  Our{" "}
-  <span className="relative inline-block text-green-500">
-    Partner
-    <img
-      src="/images/design.png"
-      alt="Design"
-      className="block mx-auto w-full max-w-[120px] mt-2"
-    />
-  </span>
-</h2>
+    {/* Animated Heading */}
+    <motion.h2
+      className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8"
+      initial={{ opacity: 0, y: -30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      Our{" "}
+      <span className="relative inline-block text-green-500">
+        Partner
+        <img
+          src="/images/design.png"
+          alt="Design"
+          className="block mx-auto w-full max-w-[120px] mt-2"
+        />
+      </span>
+    </motion.h2>
 
-
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-10 items-center justify-items-center">
-      {[1,2,3,4,5,6,7].map((partner) => (
-        <div
+    {/* Partners Grid */}
+    <motion.div
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-10 items-center justify-items-center"
+      variants={partnersContainer}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      {[1, 2, 3, 4, 5, 6, 7].map((partner) => (
+        <motion.div
           key={partner}
+          variants={partnerItem}
           className="bg-white p-6 rounded-3xl shadow-2xl transform transition duration-500 hover:-translate-y-3 hover:scale-105"
         >
           <img
@@ -435,11 +543,12 @@ const testimonials = [
             alt={`Partner ${partner}`}
             className="h-24 w-auto object-contain filter grayscale hover:grayscale-0 transition duration-500"
           />
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   </div>
 </section>
+
 
       {/*featured section*/}
     <section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-50 via-white to-green-50">

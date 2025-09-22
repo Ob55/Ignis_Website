@@ -13,8 +13,72 @@ export default function About() {
     const id = setInterval(() => setShowVision((p) => !p), 8000);
     return () => clearInterval(id);
   }, []);
+ // Animation variants
+  const buttonVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.3, duration: 1.2 },
+    }),
+  };
 
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 1.2 } },
+  };
 
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.2 } },
+  };
+
+const teamMembers = [
+  {
+    name: "Paul",
+    dept: "CEO",
+    img: "/images/paul.webp",
+    desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
+    linkedin: "https://www.linkedin.com/in/paul-osogo-a5451933/",
+  },
+  {
+    name: "Dennis",
+    dept: "Managing Director",
+    img: "/images/Dennis.webp",
+    desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
+    linkedin: "https://www.linkedin.com/in/dennis-nderitu-8528a860/",
+  },
+  {
+    name: "Sheila",
+    dept: "Chief of Staff",
+    img: "/images/Sheila.webp",
+    desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
+    linkedin: "https://www.linkedin.com/in/sheila-kamaara/",
+  },
+  {
+    name: "Fredrick Agengo",
+    dept:
+      "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
+    img: "/images/Dr Fred.webp",
+    desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
+    linkedin: "#",
+  },
+  {
+    name: "Selah",
+    dept: "Software Engineer",
+    img: "/images/Selah.webp",
+    desc: "Drives product strategy",
+    linkedin: "https://www.linkedin.com/in/sharon-selah/",
+  },
+  {
+    name: "Shadrack",
+    dept: "DMRV Lead",
+    img: "/images/Shadrak.webp",
+    desc: "Builds and scales systems",
+    linkedin:
+      "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
+  },
+];
   const content = {
     institutional: {
       title: "Institutional Steam",
@@ -27,13 +91,40 @@ export default function About() {
       text: "EPCs pressure-cook with minimal energy; induction heats cookware directly for fast, clean cooking. We provide starter recipes and safety guides."
     }
   };
+   //
+  const features = [
+    {
+      title: "Sustainability",
+      text: "Cuts solid fuels and emissions;\nready for carbon finance.",
+    },
+    {
+      title: "Impact",
+      text: "Reduces environmental footprint and\n improves kitchen efficiency.",
+    },
+    {
+      title: "Excellence",
+      text: "Ensures high-quality engineering \n and reliable performance.",
+    },
+    {
+      title: "Accessibility",
+      text: "Designed for ease of use and availability \nacross multiple settings.",
+    },
+  ];
+
+   const featureVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.2, delay: i * 1.0 }, // stagger for total ~4s
+    }),
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-800">
 <div className="relative bg-gray-100 overflow-hidden">
       {/* Floating Green Blobs */}
       <div className="absolute top-0 left-[25%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-50 animate-pulse-slow -translate-x-1/2 -translate-y-1/2 blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
-      <div className="absolute bottom-10 right-[25%] w-64 h-64 sm:w-80 sm:h-80 bg-green-300 rounded-full opacity-50 animate-pulse-slow translate-x-1/2 translate-y-1/2 blur-xl mix-blend-multiply pointer-events-none z-0"></div>
       <div className="absolute top-1/2 right-[33%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-40 animate-pulse-slow blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
 
       {/* Main Content */}
@@ -147,183 +238,202 @@ export default function About() {
 
 
         {/* Track Record Section */}
-            <section className="mt-20 py-16 relative">
+<section className="mt-20 py-16 relative">
+  <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+    Our{" "}
+    <span className="relative inline-block text-orange-500">
+      Track Record
+      <img
+        src="/images/design.png"
+        alt="Design"
+        className="block mx-auto w-full max-w-[160px] mt-2"
+      />
+    </span>
+  </h2>
+
+  <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-12 relative">
+    {/* Institutions */}
+    <motion.div
+      className="flex flex-col items-center"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 4 }}
+      viewport={{ once: true }}
+    >
+      <FaUniversity className="text-green-500 text-6xl mb-2" />
+      <h3 className="text-lg font-bold mb-1">Institutions</h3>
+      <p className="text-gray-600 text-center max-w-xs">
+        We have worked with multiple educational and institutional kitchens
+        across the continent.
+      </p>
+    </motion.div>
+
+    {/* Line 1 */}
+    <motion.div
+      className="hidden md:flex items-center"
+      initial={{ opacity: 0, scaleX: 0 }}
+      whileInView={{ opacity: 1, scaleX: 1 }}
+      transition={{ duration: 4 }}
+      viewport={{ once: true }}
+    >
+      <div className="w-24 h-1 bg-gray-400 origin-left"></div>
+    </motion.div>
+
+    {/* Partners */}
+    <motion.div
+      className="flex flex-col items-center"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 4, delay: 0.5 }}
+      viewport={{ once: true }}
+    >
+      <FaHandshake className="text-green-500 text-6xl mb-2" />
+      <h3 className="text-lg font-bold mb-1">Partners</h3>
+      <p className="text-gray-600 text-center max-w-xs">
+        Collaborating with reliable partners to ensure innovative and efficient solutions.
+      </p>
+    </motion.div>
+
+    {/* Line 2 */}
+    <motion.div
+      className="hidden md:flex items-center"
+      initial={{ opacity: 0, scaleX: 0 }}
+      whileInView={{ opacity: 1, scaleX: 1 }}
+      transition={{ duration: 4, delay: 1 }}
+      viewport={{ once: true }}
+    >
+      <div className="w-24 h-1 bg-gray-400 origin-left"></div>
+    </motion.div>
+
+    {/* Emissions */}
+    <motion.div
+      className="flex flex-col items-center"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 4, delay: 1.5 }}
+      viewport={{ once: true }}
+    >
+      <FaLeaf className="text-green-500 text-6xl mb-2" />
+      <h3 className="text-lg font-bold mb-1">Emissions</h3>
+      <p className="text-gray-600 text-center max-w-xs">
+        Reducing carbon emissions through clean and sustainable cooking
+        technologies.
+      </p>
+    </motion.div>
+  </div>
+</section>
+
+
+
+        {/* How Products Work Section */}
+         <section className="mt-20 py-16 relative bg-orange-100">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-        Our{" "}
+        How The{" "}
         <span className="relative inline-block text-orange-500">
-          Track Record
+          Products Work
           <img
             src="/images/design.png"
             alt="Design"
-            className="block mx-auto w-full max-w-[160px] mt-2"
+            className="block mx-auto w-full max-w-[170px] mt-2"
           />
         </span>
       </h2>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-16 md:gap-12 relative">
-        {/* Institutions */}
+      <div className="container mx-auto px-6 md:px-14 flex flex-col md:flex-row items-center gap-12">
+        {/* Buttons */}
+        <div className="flex flex-col gap-6 md:w-1/4">
+          {Object.keys(content).map((key, idx) => (
+            <motion.button
+              key={key}
+              onClick={() => setSelected(key)}
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.4 }}
+              variants={buttonVariants}
+              className={`text-lg md:text-xl font-bold text-left transition-colors ${
+                selected === key ? "text-orange-500" : "text-gray-700"
+              }`}
+            >
+              {content[key].title}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Image */}
         <motion.div
-          className="flex flex-col items-center"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
+          className="md:w-1/2 flex justify-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          key={selected} // re-trigger animation when selected changes
+          variants={imageVariants}
         >
-          <FaUniversity className="text-green-500 text-6xl mb-2" />
-          <h3 className="text-lg font-bold mb-1">Institutions</h3>
-          <p className="text-gray-600 text-center max-w-xs">
-            We have worked with multiple educational and institutional kitchens
-            across the continent.
-          </p>
+          <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl border-4 border-green-400 flex items-center justify-center">
+            <img
+              src={content[selected].image}
+              alt={content[selected].title}
+              className="object-cover w-full h-full"
+            />
+          </div>
         </motion.div>
 
-        {/* Line 1 */}
+        {/* Text */}
         <motion.div
-          className="hidden md:flex items-center"
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
+          className="md:w-1/4 text-gray-700 text-lg md:text-xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          key={selected + "-text"}
+          variants={textVariants}
         >
-          <div className="w-24 h-1 bg-gray-400 origin-left"></div>
-        </motion.div>
-
-        {/* Partners */}
-        <motion.div
-          className="flex flex-col items-center"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <FaHandshake className="text-green-500 text-6xl mb-2" />
-          <h3 className="text-lg font-bold mb-1">Partners</h3>
-          <p className="text-gray-600 text-center max-w-xs">
-            Collaborating with reliable partners to ensure innovative and efficient solutions.
-          </p>
-        </motion.div>
-
-        {/* Line 2 */}
-        <motion.div
-          className="hidden md:flex items-center"
-          initial={{ opacity: 0, scaleX: 0 }}
-          whileInView={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          viewport={{ once: true }}
-        >
-          <div className="w-24 h-1 bg-gray-400 origin-left"></div>
-        </motion.div>
-
-        {/* Emissions */}
-        <motion.div
-          className="flex flex-col items-center"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          viewport={{ once: true }}
-        >
-          <FaLeaf className="text-green-500 text-6xl mb-2" />
-          <h3 className="text-lg font-bold mb-1">Emissions</h3>
-          <p className="text-gray-600 text-center max-w-xs">
-            Reducing carbon emissions through clean and sustainable cooking
-            technologies.
-          </p>
+          {content[selected].text}
         </motion.div>
       </div>
     </section>
 
-
-        {/* How Products Work Section */}
-        <section className="mt-20 py-16 relative bg-orange-100">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            How The{" "}
-            <span className="relative inline-block text-orange-500">
-              Products Work
-              {/* Image directly below "Products Work" */}
-              <img
-                src="/images/design.png"
-                alt="Design"
-                className="block mx-auto w-full max-w-[170px] mt-2"
-              />
-            </span>
-          </h2>
-          <div className="container mx-auto px-6 md:px-14 flex flex-col md:flex-row items-center gap-12">
-            <div className="flex flex-col gap-6 md:w-1/4">
-              {Object.keys(content).map((key) => (
-                <button
-                  key={key}
-                  onClick={() => setSelected(key)}
-                  className={`text-lg md:text-xl font-bold text-left transition-colors ${
-                    selected === key ? "text-orange-500" : "text-gray-700"
-                  }`}
-                >
-                  {content[key].title}
-                </button>
-              ))}
-            </div>
-            <div className="md:w-1/2 flex justify-center">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl border-4 border-green-400 flex items-center justify-center">
-                <img
-                  src={content[selected].image}
-                  alt={content[selected].title}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-            </div>
-            <div className="md:w-1/4 text-gray-700 text-lg md:text-xl">
-              {content[selected].text}
-            </div>
-          </div>
-        </section>
-
         {/* Steam Cooking Section */}
-        <section className="mt-1 pt-12 pb-8 relative">
-         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-          Our{" "}
-          <span className="relative inline-block text-orange-500">
-            Steam Cooking
-            {/* Image directly below "Steam Cooking" */}
-            <img
-              src="/images/design.png"
-              alt="Design"
-              className="block mx-auto w-full max-w-[170px] mt-2"
-            />
-          </span>
-        </h2>
+       
+ <section className="mt-1 pt-12 pb-8 relative">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Our{" "}
+        <span className="relative inline-block text-orange-500">
+          Steam Cooking
+          <img
+            src="/images/design.png"
+            alt="Design"
+            className="block mx-auto w-full max-w-[170px] mt-2"
+          />
+        </span>
+      </h2>
 
-          <p className="text-base md:text-lg text-center max-w-2xl mx-auto mb-8 text-gray-700 leading-relaxed tracking-wide">
-            We build tailored, health-first, and cost-effective kitchen systems and e-cooking solutions—supported by strong warranties, training, and responsive after-sales service.
-          </p>
-          <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-12 md:gap-8 text-center">
-            <div className="flex flex-col gap-2 md:w-1/4">
-              <h3 className="text-lg font-bold">Sustainability</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Cuts solid fuels and emissions;<br />ready for carbon finance.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 md:w-1/4">
-              <h3 className="text-lg font-bold">Impact</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Reduces environmental footprint and<br /> improves kitchen efficiency.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 md:w-1/4">
-              <h3 className="text-lg font-bold">Excellence</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Ensures high-quality engineering <br /> and reliable performance.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 md:w-1/4">
-              <h3 className="text-lg font-bold">Accessibility</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Designed for ease of use and availability <br />across multiple settings.
-              </p>
-            </div>
-          </div>
-        </section>
+      <p className="text-base md:text-lg text-center max-w-2xl mx-auto mb-8 text-gray-700 leading-relaxed tracking-wide">
+        We build tailored, health-first, and cost-effective kitchen systems and
+        e-cooking solutions—supported by strong warranties, training, and
+        responsive after-sales service.
+      </p>
 
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-12 md:gap-8 text-center">
+        {features.map((feature, idx) => (
+          <motion.div
+            key={idx}
+            className="flex flex-col gap-2 md:w-1/4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+            custom={idx}
+            variants={featureVariants}
+          >
+            <h3 className="text-lg font-bold">{feature.title}</h3>
+            <p className="text-gray-600 text-sm md:text-base whitespace-pre-line">
+              {feature.text}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
         {/* Team Section */}
-<section className="mt-20 pt-16 pb-8 relative bg-green-100 z-10">
+     <section className="mt-20 pt-16 pb-8 relative bg-green-100 z-10 overflow-hidden">
   {/* Heading */}
   <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
     Meet{" "}
@@ -332,6 +442,7 @@ export default function About() {
       <img
         src="/images/design.png"
         alt="Design underline"
+        loading="lazy"
         className="block mx-auto w-full max-w-[160px] mt-2"
       />
     </span>
@@ -340,86 +451,41 @@ export default function About() {
   {/* Team Grid */}
   <div className="container mx-auto px-6 md:px-14">
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-      {[
-        {
-          name: "Paul",
-          dept: "CEO",
-          img: "/images/paul.jpg",
-          desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
-          linkedin:
-            "https://www.linkedin.com/in/paul-osogo-a5451933/",
-        },
-        {
-          name: "Dennis",
-          dept: "Managing Director",
-          img: "/images/Dennis.jpg",
-          desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
-          linkedin:
-            "https://www.linkedin.com/in/dennis-nderitu-8528a860/",
-        },
-        {
-          name: "Sheila",
-          dept: "Chief of Staff",
-          img: "/images/Sheila.jpg",
-          desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
-          linkedin:
-            "https://www.linkedin.com/in/sheila-kamaara/",
-        },
-        {
-          name: "Fredrick Agengo",
-          dept:
-            "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
-          img: "/images/Dr Fred.jpg",
-          desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
-          linkedin: "#",
-        },
-        {
-          name: "Selah",
-          dept: "Software Engineer",
-          img: "/images/Selah.jpg",
-          desc: "Drives product strategy",
-          linkedin:
-            "https://www.linkedin.com/in/sharon-selah/",
-        },
-        {
-          name: "Shadrack",
-          dept: "DMRV Lead",
-          img: "/images/Shadrak.jpg",
-          desc: "Builds and scales systems",
-          linkedin:
-            "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
-        },
-      ].map((member, idx) => (
+      {teamMembers.map((member, idx) => (
         <div
           key={idx}
-          className="relative group flex flex-col items-center"
+          className="relative group rounded-xl overflow-hidden shadow-xl"
         >
-          {/* Profile Image */}
+          {/* Background Image */}
           <img
             src={member.img}
             alt={member.name}
-            className="w-40 h-40 object-cover rounded-full border-4 border-green-600 shadow-lg transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
           />
 
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-center p-4">
-            <h3 className="text-lg font-bold">{member.name}</h3>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end items-center text-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <h3 className="text-lg font-bold text-white">{member.name}</h3>
             <p className="text-sm text-orange-300">{member.dept}</p>
-            <p className="mt-2 text-xs">{member.desc}</p>
+            <p className="mt-2 text-xs text-gray-200">{member.desc}</p>
             <a
               href={member.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 text-blue-400 hover:text-blue-500"
+              className="mt-3 text-blue-400 hover:text-blue-500"
             >
-              <FaLinkedin size={20} />
+              <FaLinkedin size={22} />
             </a>
           </div>
         </div>
       ))}
     </div>
   </div>
-</section>
+      </section> 
+
+
+
 
 
       </div>
