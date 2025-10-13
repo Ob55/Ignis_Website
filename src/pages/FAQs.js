@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -96,7 +96,7 @@ export default function FAQs() {
         ))}
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

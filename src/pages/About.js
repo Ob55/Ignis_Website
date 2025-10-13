@@ -2,7 +2,6 @@ import { useState ,useEffect } from "react";
 import { FaUniversity, FaHandshake, FaLeaf, FaLinkedin } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
-import Footer from '../components/Footer';
 
 export default function About() {
   const [selected, setSelected] = useState("institutional");
@@ -35,24 +34,24 @@ export default function About() {
 
 const teamMembers = [
   {
-    name: "Paul",
+    name: "Paul Osogo",
     dept: "CEO",
     img: "/images/paul.webp",
-    desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
+    // desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
     linkedin: "https://www.linkedin.com/in/paul-osogo-a5451933/",
   },
   {
-    name: "Dennis",
+    name: "Dennis Nderitu",
     dept: "Managing Director",
     img: "/images/Dennis.webp",
-    desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
+    // desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
     linkedin: "https://www.linkedin.com/in/dennis-nderitu-8528a860/",
   },
   {
-    name: "Sheila",
+    name: "Sheila Kamaara5",
     dept: "Chief of Staff",
     img: "/images/Sheila.webp",
-    desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
+    // desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
     linkedin: "https://www.linkedin.com/in/sheila-kamaara/",
   },
   {
@@ -60,21 +59,21 @@ const teamMembers = [
     dept:
       "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
     img: "/images/Dr Fred.webp",
-    desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
+    // desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
     linkedin: "#",
   },
   {
     name: "Selah",
     dept: "Software Engineer",
     img: "/images/Selah.webp",
-    desc: "Drives product strategy",
+    // desc: "Drives product strategy",
     linkedin: "https://www.linkedin.com/in/sharon-selah/",
   },
   {
     name: "Shadrack",
     dept: "DMRV Lead",
     img: "/images/Shadrak.webp",
-    desc: "Builds and scales systems",
+    // desc: "Builds and scales systems",
     linkedin:
       "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
   },
@@ -298,8 +297,8 @@ const teamMembers = [
     <motion.div
       className="hidden md:flex items-center"
       initial={{ opacity: 0, scaleX: 0 }}
-      whileInView={{ opacity: 1, scaleX: 1 }}
-      transition={{ duration: 4, delay: 1 }}
+      whileInView={{ opacity: 0.2, scaleX: 0.5 }}
+      transition={{ duration: 2, delay: 0.5 }}
       viewport={{ once: true }}
     >
       <div className="w-24 h-1 bg-gray-400 origin-left"></div>
@@ -309,8 +308,8 @@ const teamMembers = [
     <motion.div
       className="flex flex-col items-center"
       initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 4, delay: 1.5 }}
+      whileInView={{ opacity: 0.5, x: 0 }}
+      transition={{ duration: 2, delay: 0.5 }}
       viewport={{ once: true }}
     >
       <FaLeaf className="text-green-500 text-6xl mb-2" />
@@ -433,66 +432,62 @@ const teamMembers = [
       </div>
     </section>
         {/* Team Section */}
-     <section className="mt-20 pt-16 pb-8 relative bg-green-100 z-10 overflow-hidden">
-  {/* Heading */}
-  <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-    Meet{" "}
-    <span className="relative inline-block text-orange-500">
-      The Team
-      <img
-        src="/images/design.png"
-        alt="Design underline"
-        loading="lazy"
-        className="block mx-auto w-full max-w-[160px] mt-2"
-      />
-    </span>
-  </h2>
+    {/* Team Section */}
+      <section className="mt-20 pt-16 pb-8 relative bg-green-100 z-10 overflow-hidden">
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+          Meet{" "}
+          <span className="relative inline-block text-orange-500">
+            The Team
+            <img
+              src="/images/design.png"
+              alt="Design underline"
+              loading="lazy"
+              className="block mx-auto w-full max-w-[160px] mt-2"
+            />
+          </span>
+        </h2>
 
-  {/* Team Grid */}
-  <div className="container mx-auto px-6 md:px-14">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-      {teamMembers.map((member, idx) => (
-        <div
-          key={idx}
-          className="relative group rounded-xl overflow-hidden shadow-xl"
-        >
-          {/* Background Image */}
-          <img
-            src={member.img}
-            alt={member.name}
-            loading="lazy"
-            className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+        {/* Team Grid */}
+        <div className="container mx-auto px-6 md:px-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+            {teamMembers.map((member, idx) => (
+              <div key={idx} className="flex flex-col items-center text-center">
+                {/* Profile Image */}
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  loading="lazy"
+                  className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover shadow-lg mb-4"
+                />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent flex flex-col justify-end items-center text-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <h3 className="text-lg font-bold text-white">{member.name}</h3>
-            <p className="text-sm text-orange-300">{member.dept}</p>
-            <p className="mt-2 text-xs text-gray-200">{member.desc}</p>
-            <a
-              href={member.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 text-blue-400 hover:text-blue-500"
-            >
-              <FaLinkedin size={22} />
-            </a>
+                {/* Name */}
+                <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
+                <p className="text-base text-orange-500">{member.dept}</p>
+
+                {/* Description */}
+                {/* <p className="mt-2 text-sm md:text-base text-gray-700 max-w-xs">
+                  {member.desc}
+                </p> */}
+
+                {/* LinkedIn */}
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-blue-500 hover:text-blue-600"
+                >
+                  <FaLinkedin size={24} />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-      </section> 
-
-
-
-
+      </section>
 
       </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

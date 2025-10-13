@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import Footer from "../components/Footer";
+import { useCart } from "../CartContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Product() {
+  const { addToCart } = useCart();
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [marketingCode, setMarketingCode] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   const products = [
     {
       category: "Electric Pressure Cookers (EPCs)",
@@ -37,69 +45,61 @@ export default function Product() {
     },
   ];
 
-  const whatsappNumber = "+254724326256";
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [captchaValid, setCaptchaValid] = useState(false);
-
-  const handleBuyClick = (product) => {
+  const openModal = (product) => {
     setSelectedProduct(product);
+    setShowModal(true);
   };
 
-  const handleConfirm = () => {
-    if (!captchaValid) {
-      alert("⚠️ Please verify reCAPTCHA before continuing.");
-      return;
-    }
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=Hello, I want to buy ${encodeURIComponent(
-        selectedProduct.name
-      )}`,
-      "_blank"
-    );
-    setSelectedProduct(null); // close modal after redirect
+  const handleConfirmAdd = () => {
+    const code = marketingCode.trim() || "direct";
+
+    addToCart({ ...selectedProduct, marketingCode: code });
+
+    toast.success(`${selectedProduct.name} added to cart! (Code: ${code})`, {
+      position: "top-right",
+      autoClose: 2000,
+    });
+
+    // reset & close modal
+    setMarketingCode("");
+    setSelectedProduct(null);
+    setShowModal(false);
   };
 
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header Section */}
       <div className="relative w-full text-white text-center py-[90px] px-[30px] md:py-[150px] md:px-[150px] overflow-hidden flex flex-col items-center justify-center">
-
-  {/* Orange Background (left side) */}
-  <div
-    className="absolute inset-0 bg-orange-500"
-    style={{
-      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Orange = 70%
-    }}
-  ></div>
-
-  {/* Green Background (right side, slanted) */}
-  <div
-    className="absolute inset-0 bg-green-900"
-    style={{
-      clipPath:
-        window.innerWidth >= 768
-          ? "polygon(55% 0, 100% 0, 100% 100%, 46% 100%)" // Green slanted on desktop
-          : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)", // Straight on mobile
-    }}
-  ></div>
-
-  {/* Floating product image in background */}
-  <img 
-    src="/images/cooker.webp" 
-    alt="Products Background" 
-    className="absolute opacity-50 w-[200px] h-[200px] md:w-[400px] md:h-[400px] object-contain animate-shake-slow"
-    style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
-  />
-
-  {/* Text Content */}
-  <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-wide relative z-10">
-    Our Products
-  </h1>
-  <p className="mt-4 text-base md:text-xl text-green-100 max-w-md md:max-w-2xl mx-auto relative z-10">
-    Explore our product range and order instantly on WhatsApp
-  </p>
-</div>
-
+        {/* Orange Background */}
+        <div
+          className="absolute inset-0 bg-orange-500"
+          style={{ clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)" }}
+        ></div>
+        {/* Green Background */}
+        <div
+          className="absolute inset-0 bg-green-900"
+          style={{
+            clipPath:
+              window.innerWidth >= 768
+                ? "polygon(55% 0, 100% 0, 100% 100%, 46% 100%)"
+                : "polygon(60% 0, 100% 0, 100% 100%, 48% 100%)",
+          }}
+        ></div>
+        {/* Floating product image */}
+        <img
+          src="/images/cooker.webp"
+          alt="Products Background"
+          className="absolute opacity-50 w-[200px] h-[200px] md:w-[400px] md:h-[400px] object-contain animate-shake-slow"
+          style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        />
+        {/* Text Content */}
+        <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-wide relative z-10">
+          Our Products
+        </h1>
+        <p className="mt-4 text-base md:text-xl text-green-100 max-w-md md:max-w-2xl mx-auto relative z-10">
+          Explore our product range and add to cart — checkout via WhatsApp
+        </p>
+      </div>
 
       {/* Categories & Products */}
       <div className="p-10 space-y-12">
@@ -122,52 +122,49 @@ export default function Product() {
                   <h2 className="mt-4 text-xl font-semibold text-gray-800">{p.name}</h2>
                   <p className="text-gray-600 text-sm">{p.details}</p>
                   <button
-                    onClick={() => handleBuyClick(p)}
+                    onClick={() => openModal(p)}
                     className="mt-4 block w-full bg-green-600 text-white py-2 rounded-lg text-center font-medium hover:bg-green-700 transition"
                   >
-                    Buy Now
+                    Add to Cart
                   </button>
                 </div>
               ))}
             </div>
           </div>
-           ))}
+        ))}
       </div>
-         <Footer />      
 
-      {/* Security Modal */}
-      {selectedProduct && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-xl shadow-lg max-w-md w-full">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Confirm WhatsApp Order
-            </h2>
-            <p className="text-gray-600 mb-4">
-              You’re about to order: <strong>{selectedProduct.name}</strong>
-            </p>
-            <ReCAPTCHA
-              sitekey="6LeQB7orAAAAAO0wYtyGSghWFJF0YLQ8s-kX_Hqo" 
-              onChange={() => setCaptchaValid(true)}
-              onExpired={() => setCaptchaValid(false)}
+      {/* Modal for Marketing Code */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-xl w-[90%] max-w-md">
+            <h2 className="text-xl font-bold mb-4 text-gray-800">Enter Marketing Code</h2>
+            <input
+              type="text"
+              value={marketingCode}
+              onChange={(e) => setMarketingCode(e.target.value)}
+              placeholder="e.g. M "
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:ring-2 focus:ring-green-600"
             />
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3">
               <button
-                onClick={() => setSelectedProduct(null)}
-                className="px-4 py-2 rounded-lg border"
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500"
               >
                 Cancel
               </button>
               <button
-                onClick={handleConfirm}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg"
+                onClick={handleConfirmAdd}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
               >
-                Continue to WhatsApp
+                Confirm
               </button>
             </div>
           </div>
         </div>
       )}
+
+      <ToastContainer />
     </div>
-    
   );
 }

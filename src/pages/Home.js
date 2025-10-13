@@ -1,4 +1,4 @@
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
@@ -655,7 +655,7 @@ const testimonials = [
   </div>
 </section>
       
-      <Footer />      
+      {/* <Footer />       */}
     </div>
   );
 }

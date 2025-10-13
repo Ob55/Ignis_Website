@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
 import { useForm, ValidationError } from "@formspree/react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { sanitizeInput } from "../utils/sanitize";
@@ -187,7 +186,6 @@ export default function Contact() {
       </motion.div>
 
       <ToastContainer />
-      <Footer />
     </>
   );
 }
