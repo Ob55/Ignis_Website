@@ -230,13 +230,14 @@ const testimonials = [
 <section className="relative bg-green-900 text-white m-0 p-0 overflow-hidden min-h-screen">
   {/* Background Video */}
   <video
-    className="absolute inset-0 w-full h-full object-cover"
-    src="/images/homePageVideo1.mp4"
-    autoPlay
-    loop
-    muted
-    playsInline
-  />
+  className="absolute inset-0 w-full h-full object-cover"
+  src={`${process.env.PUBLIC_URL}/images/homePageVideo1.mp4`}
+  autoPlay
+  loop
+  muted
+  playsInline
+/>
+
 
   {/* Dark Overlay */}
   <div className="absolute inset-0 bg-black/40"></div>
