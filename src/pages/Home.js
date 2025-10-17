@@ -154,16 +154,7 @@ const testimonials = [
 
   const [selectedBenefit, setSelectedBenefit] = useState(benefits[0]);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSelectedBenefit((prev) => {
-        const currentIndex = benefits.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % benefits.length;
-        return benefits[nextIndex];
-      });
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+
 
   useEffect(() => {
   const interval = setInterval(() => {

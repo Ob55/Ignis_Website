@@ -1,70 +1,158 @@
-# Getting Started with Create React App
+# Ignis Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Developer: Brian Mwangi (GitHub: ob55)
 
-## Available Scripts
+Clean, modern kitchens for Africa’s institutions and homes — Ignis Innovation builds and deploys steam-based institutional kitchen systems and efficient household e‑cooking products, backed by training, digital monitoring and after‑sales support.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Table of contents
+- Project overview
+- Features
+- Tech stack
+- Local setup
+- Build & deploy (GitHub Pages)
+- Important configuration notes
+- Common issues & fixes
+- Contributing
+- Contact
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project overview
+This is a Create React App project for Ignis Innovation. The site uses React + Tailwind + Framer Motion for UI/animations and includes pages for Home, About, Products, Insight, FAQs, Contact and a simple cart context.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+- Responsive landing pages and product pages
+- Animated hero sections with Framer Motion
+- Contact form with ReCAPTCHA and Formspree integration
+- Simple cart context for product flow
+- Tailwind CSS for utility-first styling
+- Deployable to GitHub Pages
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech stack
+- React (react-scripts / Create React App)
+- react-router-dom
+- Tailwind CSS + PostCSS + Autoprefixer
+- Framer Motion
+- react-toastify, react-google-recaptcha
+- gh-pages for deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Local setup
+1. Clone repo
+   ```
+   git clone https://github.com/ob55/Ignis_Website.git
+   cd Ignis_Website
+   ```
+2. Install
+   ```
+   npm install
+   ```
+3. Run dev server
+   ```
+   npm start
+   ```
+4. Build for production
+   ```
+   npm run build
+   ```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Build & deploy to GitHub Pages
+1. Add `homepage` to `package.json`:
+   ```json
+   "homepage": "https://<your-github-username>.github.io/Ignis_Website"
+   ```
+   (replace `<your-github-username>` — e.g. `ob55`)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install gh-pages if not present:
+   ```
+   npm install --save-dev gh-pages
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Add deploy scripts to `package.json`:
+   ```json
+   "predeploy": "npm run build",
+   "deploy": "gh-pages -d build"
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Deploy:
+   ```
+   npm run deploy
+   ```
 
-## Learn More
+Notes:
+- For client-side routing on GitHub Pages use HashRouter (or set up a 404 redirect). Example change in `src/App.js`:
+  ```js
+  import { HashRouter as Router } from "react-router-dom";
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Important configuration notes
+- Asset paths in CRA should use relative/public paths. For example videos/images loaded from public:
+  ```
+  src={`${process.env.PUBLIC_URL}/images/homePageVideo1.mp4`}
+  ```
+- `public/manifest.json` must be valid JSON (no comments or trailing commas).
+- If deploying to GitHub Pages and routes fail, switch to HashRouter or configure redirects.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Common issues & fixes
 
-### Analyzing the Bundle Size
+- ESLint warning: "React Hook useEffect has a missing dependency: 'benefits'":
+  - Fix by memoizing `benefits` or adding it to the effect deps.
+  - Example:
+    ```js
+    const benefits = useMemo(() => [
+      "High Throughput...",
+      "Energy Flexibility...",
+      // ...
+    ], []);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    useEffect(() => {
+      const timer = setInterval(() => {
+        setSelectedBenefit(prev => {
+          const i = benefits.indexOf(prev);
+          return benefits[(i + 1) % benefits.length];
+        });
+      }, 5000);
+      return () => clearInterval(timer);
+    }, [benefits]);
+    ```
+  - Alternatively, add `// eslint-disable-next-line react-hooks/exhaustive-deps` before the effect (not recommended).
 
-### Making a Progressive Web App
+- "end of file expected" for manifest: remove comments; manifest must be pure JSON.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Deployment shows CRA README instead of app:
+  - Ensure `homepage` is set correctly and the repo name matches.
+  - Run `npm run build` then `npm run deploy`.
+  - Clear browser cache / wait a minute after deploy.
 
-### Advanced Configuration
+- Routing 404 on refresh:
+  - Use `HashRouter` or configure a redirect rule in the hosting platform.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Contributing
+- Fork, create a branch, open a PR.
+- Keep changes focused and update components/pages under `src/pages` or `src/components`.
+- Run `npm run build` and check for console warnings before PR.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Contact
+Brian Mwangi — maintainers can reach via your GitHub profile: https://github.com/ob55
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+License
+- Add license info here if needed (MIT recommended).
