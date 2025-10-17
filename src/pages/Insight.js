@@ -31,47 +31,47 @@ const containerVariants = {
   // Images as objects with metadata
   const images = [
     {
-      src: "./images/Articles1.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles1.jpg`,
       title: "Steam Cooker",
       description: "Very efficient and energy saving.",
     },
     {
-      src: "/images/Articles2.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles2.jpg`,
       title: "Electric Pan",
       description: "Perfect for quick meals.",
     },
     {
-      src: "/images/Articles3.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles3.jpg`,
       title: "Modern Oven",
       description: "Cooks evenly with smart features.",
     },
     {
-      src: "/images/Articles4.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles4.jpg`,
       title: "Rice Cooker",
       description: "Ideal for fluffy rice every time.",
     },
     {
-      src: "/images/Articles5.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles5.jpg`,
       title: "Grill",
       description: "Gives food a smoky, rich taste.",
     },
     {
-      src: "/images/Articles6.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles6.jpg`,
       title: "Air Fryer",
       description: "Crispy results with little to no oil.",
     },
     {
-      src: "/images/Articles7.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles7.jpg`,
       title: "Microwave",
       description: "Fast heating and defrosting.",
     },
     {
-      src: "/images/Articles8.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles8.jpg`,
       title: "Blender",
       description: "Perfect for smoothies and sauces.",
     },
     {
-      src: "/images/Articles9.jpg",
+      src: `${process.env.PUBLIC_URL}/images/Articles9.jpg`,
       title: "Dishwasher",
       description: "Saves time and water efficiently.",
     },
@@ -82,22 +82,22 @@ const containerVariants = {
     id: 1,
     title: "Industrial Cooker 1",
     description: "This is a sample video description",
-    thumbnail: "/images/video1-thumb.jpg",
-    src: "/images/insightVideo.mp4",        
+    thumbnail: `${process.env.PUBLIC_URL}/images/video1-thumb.jpg`,
+    src: `${process.env.PUBLIC_URL}/images/insightVideo.mp4`,        
   },
   {
     id: 2,
     title: "Video 2",
     description: "Another video description",
-    thumbnail: "/images/video2-thumb.jpg",
-    src: "/images/video2.mp4",
+    thumbnail: `${process.env.PUBLIC_URL}/images/video2-thumb.jpg`,
+    src: `${process.env.PUBLIC_URL}/images/video2.mp4`,
   },
   {
     id: 3,
     title: "Video 3",
     description: "Short description here",
-    thumbnail: "/images/video3.jpg",
-    src: "/images/video3.mp4",
+    thumbnail: `${process.env.PUBLIC_URL}/images/video3.jpg`,
+    src: `${process.env.PUBLIC_URL}/images/video3.mp4`,
   },
 ];
 
@@ -106,7 +106,7 @@ const containerVariants = {
    const profiles = [
     {
       name: "Dennis Nderitu",
-      image: "/images/Demo.jpg",
+      image: `${process.env.PUBLIC_URL}/images/Demo.jpg`,
       text: "Software Engineer & Tech Enthusiast",
       youtube: "https://youtube.com/",
       twitter: "https://twitter.com/",
@@ -114,7 +114,7 @@ const containerVariants = {
     },
     {
       name: "Sheila Kamaara",
-      image: "/images/Demo.jpg",
+      image: `${process.env.PUBLIC_URL}/images/Demo.jpg`,
       text: "Creative Designer & UI Specialist",
       youtube: "https://youtube.com/",
       twitter: "https://twitter.com/",
@@ -122,7 +122,7 @@ const containerVariants = {
     },
     {
       name: "Paul Richard ",
-      image: "/images/Demo.jpg",
+      image: `${process.env.PUBLIC_URL}/images/Demo.jpg`,
       text: "Fullstack Developer & Mentor",
       youtube: "https://youtube.com/",
       twitter: "https://twitter.com/",
@@ -171,10 +171,10 @@ const containerVariants = {
       ></div>
 
       {/* Decorative blobs */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+      {/* <div className="absolute top-0 left-0 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
       <div className="absolute top-20 right-1/4 w-64 h-64 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-      <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
+      <div className="absolute bottom-20 left-1/3 w-56 h-56 bg-orange-500 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div> */}
 
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Heading */}
@@ -189,7 +189,7 @@ const containerVariants = {
           <span className="relative inline-block text-green-800">
             Week
             <img
-              src="/images/design.png"
+              src={`${process.env.PUBLIC_URL}/images/design.png`}
               alt="Featured Week"
               className="block w-full max-w-[100px] mt-2"
             />
@@ -213,7 +213,7 @@ const containerVariants = {
               EPCs
             </div>
             <img
-              src="/images/insightHome1.jpg"
+              src={`${process.env.PUBLIC_URL}/images/insightHome1.jpg`}
               alt="Industrial Cooker"
               className="w-full h-72 object-cover"
             />
@@ -236,7 +236,7 @@ const containerVariants = {
               Induction Cookers
             </div>
             <img
-              src="/images/insightHome2.jpg"
+              src={`${process.env.PUBLIC_URL}/images/insightHome2.jpg`}
               alt="Steam Cooker"
               className="w-full h-72 object-cover"
             />
@@ -259,7 +259,7 @@ const containerVariants = {
               Steam Cooking
             </div>
             <img
-              src="/images/insightHome3.jpg"
+              src={`${process.env.PUBLIC_URL}/images/insightHome3.jpg`}
               alt="Eco Kitchen System"
               className="w-full h-72 object-cover"
               loading="lazy"

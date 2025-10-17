@@ -10,39 +10,40 @@ export default function Product() {
   const [marketingCode, setMarketingCode] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const products = [
-    {
-      category: "Electric Pressure Cookers (EPCs)",
-      items: [
-        { id: 1, name: "IGNIS 6 lts", details: "4 – 6 persons", image: "/images/epc6.jpeg" },
-        { id: 2, name: "IGNIS 10 lts", details: "10 – 14 persons", image: "/images/epc10.jpeg" },
-        { id: 3, name: "IGNIS 50 lts", details: "40 – 100 pax", image: "/images/epc50.png" },
-      ],
-    },
-    {
-      category: "Induction Cookers (ICD)",
-      items: [
-        { id: 4, name: "2 Burner", details: "Efficient and fast cooking", image: "/images/icd2.png" },
-        { id: 5, name: "Single Burner", details: "Compact and portable", image: "/images/icd1.png" },
-      ],
-    },
-    {
-      category: "Institutional Steam Cookers",
-      items: [
-        { id: 6, name: "IGNIS KIFARU (1000)", details: "Capacity: 300", image: "/images/kifaru.jpeg" },
-        { id: 7, name: "IGNIS NYATI (1500)", details: "Capacity: 450 – 500", image: "/images/nyati.png" },
-        { id: 8, name: "IGNIS TEMBO (2000)", details: "Capacity: 600 – 700", image: "/images/tembo.png" },
-        { id: 9, name: "IGNIS SIMBA (2500)", details: "Capacity: 1000 plus", image: "/images/simba.png" },
-      ],
-    },
-    {
-      category: "Cooking Pots for IC",
-      items: [
-        { id: 10, name: "6 pcs", details: "Durable set of 6 pots", image: "/images/pot6.png" },
-        { id: 11, name: "4 pcs", details: "Compact set of 4 pots", image: "/images/pot4.png" },
-      ],
-    },
-  ];
+const products = [
+  {
+    category: "Electric Pressure Cookers (EPCs)",
+    items: [
+      { id: 1, name: "IGNIS 6 lts", details: "4 – 6 persons", image: `${process.env.PUBLIC_URL}/images/epc6.jpeg` },
+      { id: 2, name: "IGNIS 10 lts", details: "10 – 14 persons", image: `${process.env.PUBLIC_URL}/images/epc10.jpeg` },
+      { id: 3, name: "IGNIS 50 lts", details: "40 – 100 pax", image: `${process.env.PUBLIC_URL}/images/epc50.png` },
+    ],
+  },
+  {
+    category: "Induction Cookers (ICD)",
+    items: [
+      { id: 4, name: "2 Burner", details: "Efficient and fast cooking", image: `${process.env.PUBLIC_URL}/images/icd2.png` },
+      { id: 5, name: "Single Burner", details: "Compact and portable", image: `${process.env.PUBLIC_URL}/images/icd1.png` },
+    ],
+  },
+  {
+    category: "Institutional Steam Cookers",
+    items: [
+      { id: 6, name: "IGNIS KIFARU (1000)", details: "Capacity: 300", image: `${process.env.PUBLIC_URL}/images/kifaru.jpeg` },
+      { id: 7, name: "IGNIS NYATI (1500)", details: "Capacity: 450 – 500", image: `${process.env.PUBLIC_URL}/images/nyati.png` },
+      { id: 8, name: "IGNIS TEMBO (2000)", details: "Capacity: 600 – 700", image: `${process.env.PUBLIC_URL}/images/tembo.png` },
+      { id: 9, name: "IGNIS SIMBA (2500)", details: "Capacity: 1000 plus", image: `${process.env.PUBLIC_URL}/images/simba.png` },
+    ],
+  },
+  {
+    category: "Cooking Pots for IC",
+    items: [
+      { id: 10, name: "6 pcs", details: "Durable set of 6 pots", image: `${process.env.PUBLIC_URL}/images/pot6.png` },
+      { id: 11, name: "4 pcs", details: "Compact set of 4 pots", image: `${process.env.PUBLIC_URL}/images/pot4.png` },
+    ],
+  },
+];
+
 
   const openModal = (product) => {
     setSelectedProduct(product);
@@ -86,7 +87,7 @@ export default function Product() {
         ></div>
         {/* Floating product image */}
         <img
-          src="/images/cooker.webp"
+          src={`${process.env.PUBLIC_URL}/images/cooker.webp`}
           alt="Products Background"
           className="absolute opacity-50 w-[200px] h-[200px] md:w-[400px] md:h-[400px] object-contain animate-shake-slow"
           style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}

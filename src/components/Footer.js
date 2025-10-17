@@ -21,7 +21,7 @@ const Footer = () => {
             {/* Logo + Info (span 2 on mobile so it looks full width, span 1 on desktop) */}
             <div className="col-span-2 md:col-span-1 flex flex-col items-start">
               <img
-                src="/images/ignis-logo.png"
+                src={`${process.env.PUBLIC_URL}/images/ignis-logo.png`}
                 alt="Ignis Innovation Logo"
                 className="h-16 mb-4 cursor-pointer"
                 onClick={() => navigate("/")}

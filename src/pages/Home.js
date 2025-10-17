@@ -71,10 +71,11 @@ const itemVariants = {
 
 
   const offerImages = {
-  "Institutional Steam Kitchens": "/images/Institutional Steam Kitchens.jpg",
-  "Household: Efficient Electric Cooking": "/images/Household: Efficient Electric Cooking.jpg",
-  "Services": "/images/Services.jpg",
+  "Institutional Steam Kitchens": `${process.env.PUBLIC_URL}/images/Institutional Steam Kitchens.jpg`,
+  "Household: Efficient Electric Cooking": `${process.env.PUBLIC_URL}/images/Household: Efficient Electric Cooking.jpg`,
+  "Services": `${process.env.PUBLIC_URL}/images/Services.jpg`,
 };
+
 const offerTexts = {
   "Institutional Steam Kitchens": [
     "Electric or LPG steam boilers, insulated piping, steam kettles & ovens, food-grade fittings. ",
@@ -120,29 +121,29 @@ const testimonials = [
   const nextTestimonial = () => {
     setCurrent((prev) => (prev + 1) % testimonials.length);
   };
+    const benefitImages = {
+      "High Throughput: Cook for thousands efficiently with consistent quality.": {
+        left: `${process.env.PUBLIC_URL}/images/left1.png`,
+        right: `${process.env.PUBLIC_URL}/images/right1.jpg`,
+      },
+      "Energy Flexibility: Works with electricity or gas/biogas—adapts easily to changing tariffs.": {
+        left: `${process.env.PUBLIC_URL}/images/left2.png`,
+        right: `${process.env.PUBLIC_URL}/images/right2.jpg`,
+      },
+      "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.": {
+        left: `${process.env.PUBLIC_URL}/images/right1.jpg`,
+        right: `${process.env.PUBLIC_URL}/images/left2.png`,
+      },
+      "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.": {
+        left: `${process.env.PUBLIC_URL}/images/left1.png`,
+        right: `${process.env.PUBLIC_URL}/images/right2.jpg`,
+      },
+      "Safer Kitchens: cleaner air,improved working conditions for staff,No open flames.": {
+        left: `${process.env.PUBLIC_URL}/images/left2.png`,
+        right: `${process.env.PUBLIC_URL}/images/right1.jpg`,
+      },
+    };
 
-  const benefitImages = {
-    "High Throughput: Cook for thousands efficiently with consistent quality.": {
-      left: "/images/left1.png",
-      right: "/images/right1.jpg",
-    },
-    "Energy Flexibility: Works with electricity or gas/biogas—adapts easily to changing tariffs.": {
-      left: "/images/left2.png",
-      right: "/images/right2.jpg",
-    },
-    "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.": {
-      left: "/images/right1.jpg",
-      right: "/images/left2.png",
-    },
-    "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.": {
-      left: "/images/left1.png",
-      right: "/images/right2.jpg",
-    },
-    "Safer Kitchens: cleaner air,improved working conditions for staff,No open flames.": {
-      left: "/images/left2.png",
-      right: "/images/right1.jpg",
-    },
-  };
 
   const benefits = [
     "High Throughput: Cook for thousands efficiently with consistent quality.",
@@ -307,7 +308,7 @@ const testimonials = [
         Metrics
         {/* Image directly below Metrics only */}
         <img
-          src="/images/design.png"
+        src={`${process.env.PUBLIC_URL}/images/design.png`}
           alt="Design"
           className="block mx-auto w-full max-w-[120px] mt-2"
         />
@@ -319,7 +320,7 @@ const testimonials = [
   <div className="w-full flex justify-center px-6 md:px-12 relative z-10">
     <div className="relative w-full max-w-3xl">
       <img
-        src="/images/map.png"
+        src={`${process.env.PUBLIC_URL}/images/map.png`}
         alt="Map"
         className="w-full h-auto object-contain rounded-xl shadow-lg"
       />
@@ -369,7 +370,7 @@ const testimonials = [
     We Offer
     {/* Image directly below "we offer" */}
     <img
-      src="/images/design.png"
+    src={`${process.env.PUBLIC_URL}/images/design.png`}
       alt="Design"
       className="block mx-auto w-full max-w-[110px] mt-2"
     />
@@ -462,7 +463,7 @@ const testimonials = [
         <span className="relative inline-block text-green-600">
           Steam
           <img
-            src="/images/design.png"
+            src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[100px] mt-2"
           />
@@ -520,7 +521,7 @@ const testimonials = [
       <span className="relative inline-block text-green-500">
         Partners
         <img
-          src="/images/design.png"
+          src={`${process.env.PUBLIC_URL}/images/design.png`}
           alt="Design"
           className="block mx-auto w-full max-w-[120px] mt-2"
         />
@@ -542,7 +543,7 @@ const testimonials = [
           className="bg-white p-6 rounded-3xl shadow-2xl transform transition duration-500 hover:-translate-y-3 hover:scale-105"
         >
           <img
-            src={`/images/partner${partner}.png`}
+            src={`${process.env.PUBLIC_URL}/images/partner${partner}.png`}
             alt={`Partner ${partner}`}
             className="h-24 w-auto object-contain filter grayscale hover:grayscale-0 transition duration-500"
           />
@@ -568,7 +569,7 @@ const testimonials = [
   <span className="relative inline-block text-green-500">
     Products
     <img
-      src="/images/design.png"
+      src={`${process.env.PUBLIC_URL}/images/design.png`}
       alt="Design"
       className="block mx-auto w-full max-w-[120px] mt-2"
     />
@@ -586,7 +587,7 @@ const testimonials = [
       {[1, 2, 3, 4].map((product) => (
         <div key={product} className="relative group rounded-xl overflow-hidden shadow-lg">
           <img
-            src="/images/cooker.png"
+            src={`${process.env.PUBLIC_URL}/images/cooker.png`}
             alt={`Product ${product}`}
             className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -617,7 +618,7 @@ const testimonials = [
   <span className="relative inline-block text-green-500">
     Testimonials
     <img
-      src="/images/design.png"
+      src={`${process.env.PUBLIC_URL}/images/design.png`}
       alt="Design"
       className="block mx-auto w-full max-w-[130px] mt-2"
     />

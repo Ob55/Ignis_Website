@@ -36,57 +36,50 @@ const teamMembers = [
   {
     name: "Paul Osogo",
     dept: "CEO",
-    img: "/images/paul.webp",
-    // desc: "Paul Osogo, is the Chief Executive Officer at Ignis Innovation...",
+    img: `${process.env.PUBLIC_URL}/images/paul.webp`,
     linkedin: "https://www.linkedin.com/in/paul-osogo-a5451933/",
   },
   {
     name: "Dennis Nderitu",
     dept: "Managing Director",
-    img: "/images/Dennis.webp",
-    // desc: "Dennis Nderitu is Managing Director at Ignis Innovation...",
+    img: `${process.env.PUBLIC_URL}/images/Dennis.webp`,
     linkedin: "https://www.linkedin.com/in/dennis-nderitu-8528a860/",
   },
   {
-    name: "Sheila Kamaara5",
+    name: "Sheila Kamaara",
     dept: "Chief of Staff",
-    img: "/images/Sheila.webp",
-    // desc: "Sheila Kamaara is the Chief of Staff at Ignis Innovations...",
+    img: `${process.env.PUBLIC_URL}/images/Sheila.webp`,
     linkedin: "https://www.linkedin.com/in/sheila-kamaara/",
   },
   {
     name: "Fredrick Agengo",
-    dept:
-      "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
-    img: "/images/Dr Fred.webp",
-    // desc: "Leads initiatives in safe, sustainable, and energy-efficient cooking...",
+    dept: "IGNIS Clean Cooking Hub Coordinator, Eldoret National Polytechnic",
+    img: `${process.env.PUBLIC_URL}/images/DrFred.webp`,
     linkedin: "#",
   },
   {
     name: "Selah",
     dept: "Software Engineer",
-    img: "/images/Selah.webp",
-    // desc: "Drives product strategy",
+    img: `${process.env.PUBLIC_URL}/images/Selah.webp`,
     linkedin: "https://www.linkedin.com/in/sharon-selah/",
   },
   {
     name: "Shadrack",
     dept: "DMRV Lead",
-    img: "/images/Shadrak.webp",
-    // desc: "Builds and scales systems",
-    linkedin:
-      "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
+    img: `${process.env.PUBLIC_URL}/images/Shadrak.webp`,
+    linkedin: "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
   },
 ];
+
   const content = {
     institutional: {
       title: "Institutional Steam",
-      image: "/images/institutional.png",
+      image: `${process.env.PUBLIC_URL}/images/institutional.png`,
       text: "A high-efficiency boiler generates steam that’s distributed through insulated pipes to kettles/ovens. Operators control temperature/pressure precisely; condensate recovery reduces losses. Digital sensors prompt maintenance and track usage."
     },
     household: {
       title: "Household E-Cooking",
-      image: "/images/household.png",
+      image: `${process.env.PUBLIC_URL}/images/household.png`,
       text: "EPCs pressure-cook with minimal energy; induction heats cookware directly for fast, clean cooking. We provide starter recipes and safety guides."
     }
   };
@@ -165,7 +158,7 @@ const teamMembers = [
 
           {/* Underline */}
           <motion.img
-            src="/images/design.png"
+            src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design underline"
             className="block w-full max-w-[150px] mb-8 ml-[130px]"
             initial={{ opacity: 0, y: -10 }}
@@ -200,7 +193,7 @@ const teamMembers = [
 
           {/* Underline */}
           <motion.img
-            src="/images/design.png"
+            src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design underline"
             className="block w-full max-w-[150px] mb-8 ml-[40px]"
             initial={{ opacity: 0, y: -10 }}
@@ -227,7 +220,7 @@ const teamMembers = [
     <span className="relative inline-block text-orange-500">
       Track Record
       <img
-        src="/images/design.png"
+        src={`${process.env.PUBLIC_URL}/images/design.png`}
         alt="Design"
         className="block mx-auto w-full max-w-[160px] mt-2"
       />
@@ -315,7 +308,7 @@ const teamMembers = [
         <span className="relative inline-block text-orange-500">
           Products Work
           <img
-            src="/images/design.png"
+            src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[170px] mt-2"
           />
@@ -383,7 +376,7 @@ const teamMembers = [
         <span className="relative inline-block text-orange-500">
           Steam Cooking
           <img
-            src="/images/design.png"
+            src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[170px] mt-2"
           />
@@ -424,7 +417,7 @@ const teamMembers = [
           <span className="relative inline-block text-orange-500">
             Our Team
             <img
-              src="/images/design.png"
+              src={`${process.env.PUBLIC_URL}/images/design.png`}
               alt="Design underline"
               loading="lazy"
               className="block mx-auto w-full max-w-[160px] mt-2"

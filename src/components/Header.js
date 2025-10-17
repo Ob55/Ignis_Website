@@ -25,7 +25,7 @@ const showCart = location.pathname === "/product" || location.pathname === "/car
         {/* Logo */}
         <div className="flex-shrink-0">
           <img
-            src="/images/ignis-logo.png"
+            src={`${process.env.PUBLIC_URL}/images/ignis-logo.png`}
             alt="Ignis Logo"
             className="h-12 w-auto cursor-pointer"
             onClick={() => navigate("/")}
