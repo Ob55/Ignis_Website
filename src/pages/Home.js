@@ -7,7 +7,6 @@ import { motion , AnimatePresence } from "framer-motion";
 
 
 
-
 export default function Home() {
   const [, setImageIndex] = useState(0);
     const images = [
@@ -35,15 +34,6 @@ const partnerItem = {
   // For "What we offer" section (right side nav images)
 const [selectedOffer, setSelectedOffer] = useState("Institutional Steam Kitchens");
 
-   // Variants for the whole list container
-const listVariants = {
-  hidden: { opacity: 0, y: 40 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { staggerChildren: 0.25, delayChildren: 0.15 },
-  },
-};
 
 // Variants for each benefit item
 const containerVariants = {
@@ -88,7 +78,7 @@ const itemVariants = {
 const offerTexts = {
   "Institutional Steam Kitchens": [
     "Electric or LPG steam boilers, insulated piping, steam kettles & ovens, food-grade fittings. ",
-    "Full kitchen design, installation, training, and O&M. ",
+    "Full kitchen design, installation, training, and Operation and Maintenance. ",
     "Digital monitoring (usage, uptime, maintenance prompts). "
   ],
   "Household: Efficient Electric Cooking": [
@@ -103,12 +93,7 @@ const offerTexts = {
   ]
 };
 
-  const benefits = [
-  "High Throughput: Cook for thousands efficiently with consistent quality.",
-  "Energy Flexible: Works with electricity or gas/biogas—adapts easily to changing tariffs.",
-  "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.",
-  "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.",
-];
+
 
 const testimonials = [
   "Ignis Innovation transformed our institutional kitchen – energy-efficient and easy to use!",
@@ -136,33 +121,49 @@ const testimonials = [
     setCurrent((prev) => (prev + 1) % testimonials.length);
   };
 
-    const benefitImages = {
+  const benefitImages = {
     "High Throughput: Cook for thousands efficiently with consistent quality.": {
       left: "/images/left1.png",
       right: "/images/right1.jpg",
     },
-    "Energy Flexible: Works with electricity or gas/biogas—adapts easily to changing tariffs.": {
-      left: "/images/left2.jpg",
+    "Energy Flexibility: Works with electricity or gas/biogas—adapts easily to changing tariffs.": {
+      left: "/images/left2.png",
       right: "/images/right2.jpg",
     },
     "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.": {
       left: "/images/right1.jpg",
-      right: "/images/left2.jpg",
+      right: "/images/left2.png",
     },
     "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.": {
       left: "/images/left1.png",
       right: "/images/right2.jpg",
     },
-    "Safer Kitchens: No open flames; cleaner air; improved working conditions for staff.": {
-      left: "/images/left2.jpg",
+    "Safer Kitchens: cleaner air,improved working conditions for staff,No open flames.": {
+      left: "/images/left2.png",
       right: "/images/right1.jpg",
     },
   };
 
-   const [selectedBenefit, setSelectedBenefit] = useState(benefits[0]);
+  const benefits = [
+    "High Throughput: Cook for thousands efficiently with consistent quality.",
+    "Energy Flexibility: Works with electricity or gas/biogas—adapts easily to changing tariffs.",
+    "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.",
+    "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.",
+    "Safer Kitchens: cleaner air,improved working conditions for staff, No open flames.",
+  ];
 
+  const [selectedBenefit, setSelectedBenefit] = useState(benefits[0]);
 
-
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSelectedBenefit((prev) => {
+        const currentIndex = benefits.indexOf(prev);
+        const nextIndex = (currentIndex + 1) % benefits.length;
+        return benefits[nextIndex];
+      });
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
   const interval = setInterval(() => {
@@ -249,14 +250,19 @@ const testimonials = [
                  px-6 md:px-16 py-20 md:py-40 relative z-10 mt-12 md:mt-20"
     >
       <motion.h1
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl md:text-6xl font-extrabold text-white mb-8 leading-tight"
-      >
-        Clean, modern kitchens for Africa’s institutions and homes{" "}
-        <span className="font-bold text-orange-500">Ignis Innovation</span>
-      </motion.h1>
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className="text-3xl md:text-5xl font-extrabold text-white mb-8 leading-tight"
+>
+  <span className="block text-5xl md:text-7xl font-extrabold text-orange-500 mb-2">
+    Ignis Innovation
+  </span>
+  <span className="text-white font-semibold md:text-4xl text-2xl">
+    Building Africa’s clean cooking infrastructure for schools, institutions, and communities
+  </span>
+</motion.h1>
+
 
       <motion.p
         initial={{ opacity: 0, y: 30 }}
@@ -282,7 +288,7 @@ const testimonials = [
           Talk To Our Team
         </button>
         <button
-          className="bg-yellow-200 text-black px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition"
+          className="bg-orange-500 text-black px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition"
           onClick={() => navigate("/product")}
         >
           Shop Household Appliances
@@ -299,9 +305,9 @@ const testimonials = [
       {/* Our Metrics Section */}
   <section className="relative py-12 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
   {/* Floating abstract blobs */}
-  <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
-  <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div>
+  {/* <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
+  <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div> */}
+  {/* <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
 
   <div className="container mx-auto text-center px-6 md:px-12 mb-8 relative z-10">
     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 inline-block relative">
@@ -357,11 +363,11 @@ const testimonials = [
 </section>
 
       {/* What We Offer Section */}
-     <section className="offer-section relative bg-gradient-to-r from-green-50 via-white to-green-50 py-20 overflow-hidden">
+<section className="offer-section relative bg-gradient-to-r from-green-300/50 via-white to-green-500/50 py-20 overflow-hidden">
   {/* Floating abstract blobs */}
-  <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
+  {/* <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div>
+  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
 
   <div className="container mx-auto flex flex-col md:flex-row items-start justify-between px-6 relative z-10">
     {/* Left side - Heading + Boxes */}
@@ -435,75 +441,80 @@ const testimonials = [
 
 
       {/* Why Steam Cooking Section */}
-    <section className="overflow-x-hidden bg-gradient-to-r from-green-50 via-green-100 to-green-50 py-16">
-      <div className="container mx-auto text-center px-4 sm:px-6 md:px-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
+ <section className="overflow-hidden bg-white py-20 relative">
+  <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6 relative z-10">
+    
+    {/* LEFT IMAGE SECTION */}
+    <div className="flex justify-center md:w-1/2 mb-12 md:mb-0">
+      <div className="relative w-[650px] h-[600px] md:w-[700px] md:h-[720px] rounded-2xl overflow-hidden">
+        <AnimatePresence mode="wait">
+          {benefitImages[selectedBenefit] && (
+            <motion.img
+              key={selectedBenefit}
+              src={benefitImages[selectedBenefit].left}
+              alt="Steam Cooking"
+              className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)]"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: 'easeInOut' }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+
+    {/* RIGHT TEXT SECTION */}
+    <div className="text-center md:text-left max-w-2xl md:w-1/2 space-y-6">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         Why{" "}
-        <span className="relative inline-block text-green-500">
+        <span className="relative inline-block text-green-600">
           Steam
-          {/* Image directly below "Steam" */}
           <img
             src="/images/design.png"
             alt="Design"
             className="block mx-auto w-full max-w-[100px] mt-2"
           />
-          </span>{" "}
-          Cooking?
-        </h2>
+        </span>{" "}
+        Cooking?
+      </h2>
 
-            <p className="text-gray-700 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-full sm:max-w-xl md:max-w-2xl mx-auto leading-relaxed text-center">
-          Steam cooking is emerging as a game-changer for large institutions. It’s efficient, adaptable, and cleaner. Key benefits include:
-        </p>
+      <p className="text-gray-700 text-lg md:text-xl leading-relaxed max-w-xl">
+        Steam cooking is emerging as a game-changer for large institutions.
+        It’s efficient, adaptable, and cleaner. Key benefits include:
+      </p>
 
+      {/* BENEFITS LIST */}
+      <div className="flex flex-col gap-5">
+        {benefits.map((text) => (
+          <div
+            key={text}
+            onClick={() => setSelectedBenefit(text)}
+            className={`flex items-center bg-gray-50 hover:bg-gray-100 shadow-sm rounded-xl px-6 py-5 text-gray-800 text-lg font-semibold transition-all duration-300 ${
+              selectedBenefit === text
+                ? "border-2 border-green-500 shadow-md"
+                : "border border-transparent"
+            }`}
+          >
+            <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4" />
+            {text}
           </div>
-
-            <div className="relative flex flex-col md:flex-row justify-center items-center mt-14 px-7 md:gap-60 gap-10">
-              {/* Left Image */}
-              <img
-                src={benefitImages[selectedBenefit].left}
-                alt="Steam Cooking Left"
-                className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
-              />
-
-              {/* Center Content */}
-            <motion.div
-              className="flex flex-col gap-6 max-w-[600px] my-6 md:my-0"
-              variants={listVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0.3 }} // 👈 triggers on scroll
-            >
-              {benefits.map((text) => (
-                <motion.div
-                  key={text}
-                  variants={itemVariants}
-                  onClick={() => setSelectedBenefit(text)}
-                  className={`flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full min-h-[90px] cursor-pointer ${
-                    selectedBenefit === text ? "border-2 border-green-500" : ""
-                  }`}
-                >
-                  <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4" />
-                  {text}
-                </motion.div>
-              ))}
-            </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
 
-              {/* Right Image */}
-              <img
-                src={benefitImages[selectedBenefit].right}
-                alt="Steam Cooking Right"
-                className="h-[600px] w-[400px] md:h-[600px] md:w-[400px] object-cover rounded-xl shadow-lg"
-              />
-            </div>
-    </section>
+
+
 
       {/* Our Partners */}
-<section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-50 via-white to-green-50">
+<section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-300 via-white to-green-300">
   {/* Background bubbles */}
-  <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
+  {/* <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div>
+  <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
 
   <div className="container mx-auto relative z-10 text-center px-6">
     {/* Animated Heading */}
@@ -516,7 +527,7 @@ const testimonials = [
     >
       Our{" "}
       <span className="relative inline-block text-green-500">
-        Partner
+        Partners
         <img
           src="/images/design.png"
           alt="Design"
@@ -554,9 +565,9 @@ const testimonials = [
       {/*featured section*/}
     <section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-50 via-white to-green-50">
   {/* Optional abstract floating blobs */}
-  <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
+  {/* <div className="absolute top-0 left-1/4 w-80 h-80 bg-green-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-green-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div>
+  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-green-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
 
   <div className="container mx-auto px-6 relative z-10">
     {/* Heading and Button Row */}
@@ -603,11 +614,11 @@ const testimonials = [
 
    
     {/* Testimonials Section */}
-      <section className="py-20 relative bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-50 overflow-hidden">
+<section className="py-20 relative bg-gradient-to-r from-green-200 via-green-350 to-green-200 overflow-hidden">
   {/* Floating abstract blobs */}
-  <div className="absolute top-0 left-1/4 w-80 h-80 bg-yellow-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
+  {/* <div className="absolute top-0 left-1/4 w-80 h-80 bg-yellow-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
   <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-yellow-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-yellow-300 rounded-full opacity-20 animate-pulse-slow"></div>
+  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-yellow-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
 
   <div className="container mx-auto text-center px-6 relative z-10">
      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">

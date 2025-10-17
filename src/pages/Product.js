@@ -66,7 +66,7 @@ export default function Product() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+<div className="min-h-screen bg-gradient-to-r from-green-300 via-green-100 to-green-300 overflow-hidden">
       {/* Header Section */}
       <div className="relative w-full text-white text-center py-[90px] px-[30px] md:py-[150px] md:px-[150px] overflow-hidden flex flex-col items-center justify-center">
         {/* Orange Background */}

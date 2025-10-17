@@ -1,11 +1,11 @@
 import { useState ,useEffect } from "react";
 import { FaUniversity, FaHandshake, FaLeaf, FaLinkedin } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 export default function About() {
   const [selected, setSelected] = useState("institutional");
-    const [showVision, setShowVision] = useState(false);
+    const [, setShowVision] = useState(false);
 
 
         useEffect(() => {
@@ -123,117 +123,101 @@ const teamMembers = [
     <div className="min-h-screen bg-white text-gray-800">
 <div className="relative bg-gray-100 overflow-hidden">
       {/* Floating Green Blobs */}
-      <div className="absolute top-0 left-[25%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-50 animate-pulse-slow -translate-x-1/2 -translate-y-1/2 blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
-      <div className="absolute top-1/2 right-[33%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-40 animate-pulse-slow blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
+      {/* <div className="absolute top-0 left-[25%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-50 animate-pulse-slow -translate-x-1/2 -translate-y-1/2 blur-2xl mix-blend-multiply pointer-events-none z-0"></div>
+      <div className="absolute top-1/2 right-[33%] w-72 h-72 sm:w-96 sm:h-96 bg-green-400 rounded-full opacity-40 animate-pulse-slow blur-2xl mix-blend-multiply pointer-events-none z-0"></div> */}
 
       {/* Main Content */}
     <div className="relative z-10">
 
         {/* Mission & Vision Section */}
    <div className="relative w-full text-white m-0 p-0 overflow-hidden">
-  {/* Orange Background (left side) */}
-  <div
-    className="absolute inset-0 bg-orange-500"
-    style={{
-      clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)", // Mobile default (straight)
-    }}
-  ></div>
+      {/* Orange Background (left side - Mission) */}
+      <div
+        className="absolute inset-0 bg-orange-500"
+        style={{
+          clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)",
+        }}
+      ></div>
 
-  {/* Green Background (right side, slanted on desktop) */}
-  <div
-    className="absolute inset-0 bg-green-900 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
-  ></div>
+      {/* Green Background (right side - Vision, slanted) */}
+      <div
+        className="absolute inset-0 bg-green-900 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
+      ></div>
 
-  {/* Content grid */}
-  <div className="relative grid grid-cols-1 md:grid-cols-2">
-    {/* Left side: Mission / Vision */}
-    <div className="flex flex-col items-start justify-center px-8 md:px-16 py-12 md:py-24 md:pl-28">
-      <AnimatePresence mode="wait">
-        <motion.h2
-          key={showVision ? "vision-h" : "mission-h"}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold mb-6 ml-6"
+      {/* Content grid */}
+      <div className="relative grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+        {/* LEFT SIDE — Mission (flows in from left) */}
+        <motion.div
+          initial={{ opacity: 0, x: -120 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+          }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col items-start justify-center px-8 md:px-16 py-12 md:py-24 md:pl-28"
         >
-          <span className="text-white">Our </span>
-          <span className="relative inline-block text-white-500">
-            {showVision ? "Vision" : "Mission"}
-          </span>
-        </motion.h2>
-      </AnimatePresence>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 ml-6">
+            <span className="text-white">Our </span>
+            <span className="relative inline-block text-white">Mission</span>
+          </h2>
 
-      {/* underline image */}
-      <motion.img
-        src="/images/design.png"
-        alt="Design underline"
-        className="block w-full max-w-[150px] mb-8 ml-[130px]"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      />
+          {/* Underline */}
+          <motion.img
+            src="/images/design.png"
+            alt="Design underline"
+            className="block w-full max-w-[150px] mb-8 ml-[130px]"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          />
 
-      <AnimatePresence mode="wait">
-        {showVision ? (
-          <motion.p
-            key="vision-text"
-            className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.6 }}
-          >
-            To design, manufacture, and deploy innovative <br />
-            steam-based kitchen systems and e-cooking products <br />
-            that make clean, reliable cooking the default <br />
-            across Africa.
-          </motion.p>
-        ) : (
-          <motion.p
-            key="mission-text"
-            className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.6 }}
-          >
+          <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl">
             Ignis Innovation accelerates clean institutional <br />
             kitchens and electric cooking at home <br />
             by combining fit-for-purpose technology, training, <br />
             digital monitoring, and access to finance and carbon incentives.
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-
-    {/* Right side: Image box with circle */}
-    <div className="flex items-center justify-center px-8 md:px-16 py-12 md:py-24 relative">
-      {/* Decorative circle */}
-      <div
-        className="absolute left-[10rem] top-1/3 w-56 h-56 rounded-full"
-        style={{ backgroundColor: "rgba(182, 246, 166, 1)" }}
-      />
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={showVision ? "vision-img" : "mission-img"}
-          initial={{ opacity: 0, scale: 0.92, rotate: -4 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          exit={{ opacity: 0, scale: 0.92, rotate: 4 }}
-          transition={{ duration: 0.8 }}
-          className="w-full max-w-md h-80 bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-green-600 relative z-10 flex items-center justify-center"
-        >
-          <img
-            src={showVision ? "/images/AboutH.png" : "/images/AboutH.png"}
-            alt={showVision ? "Vision Visual" : "Mission Visual"}
-            className="w-full h-full object-cover"
-          />
+          </p>
         </motion.div>
-      </AnimatePresence>
+
+        {/* RIGHT SIDE — Vision (flows in from right) */}
+        <motion.div
+          initial={{ opacity: 0, x: 120 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 1.2,
+            ease: "easeOut",
+          }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col items-start justify-center px-8 md:px-24 py-12 md:py-24 md:pl-32"
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+            <span className="text-white">Our </span>
+            <span className="text-white">Vision</span>
+          </h2>
+
+          {/* Underline */}
+          <motion.img
+            src="/images/design.png"
+            alt="Design underline"
+            className="block w-full max-w-[150px] mb-8 ml-[40px]"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          />
+
+          <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl text-white">
+            To design, manufacture, and deploy innovative <br />
+            steam-based kitchen systems and e-cooking products <br />
+            that make clean, reliable cooking the default <br />
+            across Africa.
+          </p>
+        </motion.div>
+      </div>
     </div>
-  </div>
-</div>
 
 
         {/* Track Record Section */}
@@ -325,7 +309,7 @@ const teamMembers = [
 
 
         {/* How Products Work Section */}
-         <section className="mt-20 py-16 relative bg-orange-100">
+<section className="py-20 relative bg-gradient-to-r from-green-300 via-green-100 to-green-300 overflow-hidden">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
         How The{" "}
         <span className="relative inline-block text-orange-500">
@@ -433,12 +417,12 @@ const teamMembers = [
     </section>
         {/* Team Section */}
     {/* Team Section */}
-      <section className="mt-20 pt-16 pb-8 relative bg-green-100 z-10 overflow-hidden">
+<section className="mt-20 pt-16 pb-8 relative bg-gradient-to-r from-green-300 via-green-100 to-green-300 z-10 overflow-hidden">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           Meet{" "}
           <span className="relative inline-block text-orange-500">
-            The Team
+            Our Team
             <img
               src="/images/design.png"
               alt="Design underline"
