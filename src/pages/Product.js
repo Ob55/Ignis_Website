@@ -72,12 +72,12 @@ const products = [
       <div className="relative w-full text-white text-center py-[90px] px-[30px] md:py-[150px] md:px-[150px] overflow-hidden flex flex-col items-center justify-center">
         {/* Orange Background */}
         <div
-          className="absolute inset-0 bg-orange-500"
+            className="absolute inset-0 bg-[#F58220]"
           style={{ clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)" }}
         ></div>
         {/* Green Background */}
         <div
-          className="absolute inset-0 bg-green-900"
+          className="absolute inset-0 bg-[#00712D]"
           style={{
             clipPath:
               window.innerWidth >= 768
@@ -96,7 +96,7 @@ const products = [
         <h1 className="text-3xl md:text-5xl font-extrabold text-white tracking-wide relative z-10">
           Our Products
         </h1>
-        <p className="mt-4 text-base md:text-xl text-green-100 max-w-md md:max-w-2xl mx-auto relative z-10">
+<p className="mt-4 text-base md:text-xl text-[#00712D] max-w-md md:max-w-2xl mx-auto relative z-10">
           Explore our product range and add to cart — checkout via WhatsApp
         </p>
       </div>
@@ -105,7 +105,7 @@ const products = [
       <div className="p-10 space-y-12">
         {products.map((category) => (
           <div key={category.category}>
-            <h1 className="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-green-500 pb-2">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6 border-b-2 border-[#00712D] pb-2">
               {category.category}
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
@@ -123,7 +123,7 @@ const products = [
                   <p className="text-gray-600 text-sm">{p.details}</p>
                   <button
                     onClick={() => openModal(p)}
-                    className="mt-4 block w-full bg-green-600 text-white py-2 rounded-lg text-center font-medium hover:bg-green-700 transition"
+                    className="mt-4 block w-full bg-[#00712D] text-white py-2 rounded-lg text-center font-medium hover:bg-[#005A23] transition"
                   >
                     Add to Cart
                   </button>

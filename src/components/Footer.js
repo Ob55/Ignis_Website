@@ -7,14 +7,14 @@ const Footer = () => {
   return (
     <>
       {/* Main Footer Section */} 
-      <footer className="relative bg-primary-500 py-16 overflow-hidden">
+<footer className="relative bg-[#00712D] py-16 overflow-hidden">
         {/* Floating blobs */}
-        <div className="absolute top-0 left-1/4 w-72 h-72 bg-green-300 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+        {/* <div className="absolute top-0 left-1/4 w-72 h-72 bg-green-300 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
         <div className="absolute bottom-10 right-1/4 w-60 h-60 bg-green-200 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2 blur-xl"></div>
-        <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-green-400 rounded-full opacity-20 animate-pulse-slow blur-2xl"></div>
+        <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-green-400 rounded-full opacity-20 animate-pulse-slow blur-2xl"></div> */}
 
         {/* Content Grid */}
-        <div className="relative container mx-auto px-6 md:px-12">
+<div className="relative container mx-auto px-6 md:px-12 text-white">
           {/* Desktop layout: 5 cols | Mobile: stack with 2 cols */}
           <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
             

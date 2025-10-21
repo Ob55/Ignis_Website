@@ -12,9 +12,10 @@ export default function Header() {
   const { cart } = useCart(); // get cart items
 
   const linkClass = ({ isActive }) =>
-    isActive
-      ? "text-green-600 font-bold border-b-2 border-green-600 transition px-3 py-2 text-lg"
-      : "text-gray-700 hover:text-green-600 font-bold transition px-3 py-2 text-lg";
+   isActive
+  ? "text-[#00712D] font-bold border-b-2 border-[#00712D] transition px-3 py-2 text-lg"
+  : "text-gray-700 hover:text-[#00712D] font-bold transition px-3 py-2 text-lg"
+
 
   // Show cart only on /product page
 const showCart = location.pathname === "/product" || location.pathname === "/cart";
@@ -46,10 +47,11 @@ const showCart = location.pathname === "/product" || location.pathname === "/car
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              isActive
-                ? "bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg text-lg"
-                : "bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition text-lg"
-            }
+             isActive
+        ? "bg-[#00712D] text-white px-6 py-3 rounded-lg shadow-lg text-lg scale-105 transition"
+        : "bg-[#00712D] text-white px-6 py-3 rounded-lg hover:bg-[#005A23] hover:shadow-xl active:scale-95 transition text-lg"
+
+                  }
           >
             Contact Us
           </NavLink>

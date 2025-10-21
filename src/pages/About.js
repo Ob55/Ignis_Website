@@ -126,7 +126,7 @@ const teamMembers = [
    <div className="relative w-full text-white m-0 p-0 overflow-hidden">
       {/* Orange Background (left side - Mission) */}
       <div
-        className="absolute inset-0 bg-orange-500"
+      className="absolute inset-0 bg-[#F58220]"
         style={{
           clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)",
         }}
@@ -134,7 +134,7 @@ const teamMembers = [
 
       {/* Green Background (right side - Vision, slanted) */}
       <div
-        className="absolute inset-0 bg-green-800 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
+      className="absolute inset-0 bg-[#00712D] md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
       ></div>
 
       {/* Content grid */}
@@ -157,7 +157,7 @@ const teamMembers = [
           </h2>
 
           {/* Underline */}
-          <motion.img
+          {/* <motion.img
             src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design underline"
             className="block w-full max-w-[150px] mb-8 ml-[130px]"
@@ -165,7 +165,7 @@ const teamMembers = [
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
-          />
+          /> */}
 
           <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl">
             Ignis Innovation accelerates clean institutional <br />
@@ -192,7 +192,7 @@ const teamMembers = [
           </h2>
 
           {/* Underline */}
-          <motion.img
+          {/* <motion.img
             src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design underline"
             className="block w-full max-w-[150px] mb-8 ml-[40px]"
@@ -200,7 +200,7 @@ const teamMembers = [
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
-          />
+          /> */}
 
           <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl text-white">
             To design, manufacture, and deploy innovative <br />
@@ -217,13 +217,13 @@ const teamMembers = [
 <section className="mt-20 py-16 relative">
   <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
     Our{" "}
-    <span className="relative inline-block text-orange-500">
+<span className="relative inline-block text-[#00712D]">
       Track Record
-      <img
+      {/* <img
         src={`${process.env.PUBLIC_URL}/images/design.png`}
         alt="Design"
         className="block mx-auto w-full max-w-[160px] mt-2"
-      />
+      /> */}
     </span>
   </h2>
 
@@ -236,7 +236,7 @@ const teamMembers = [
       transition={{ duration: 4 }}
       viewport={{ once: true }}
     >
-      <FaUniversity className="text-green-500 text-6xl mb-2" />
+<FaUniversity className="text-[#00712D] text-6xl mb-2" />
       <h3 className="text-lg font-bold mb-1">Institutions</h3>
       <p className="text-gray-600 text-center max-w-xs">
         We have worked with multiple educational and institutional kitchens
@@ -263,7 +263,7 @@ const teamMembers = [
       transition={{ duration: 4, delay: 0.5 }}
       viewport={{ once: true }}
     >
-      <FaHandshake className="text-green-500 text-6xl mb-2" />
+    <FaHandshake className="text-[#00712D] text-6xl mb-2" />
       <h3 className="text-lg font-bold mb-1">Partners</h3>
       <p className="text-gray-600 text-center max-w-xs">
         Collaborating with reliable partners to ensure innovative and efficient solutions.
@@ -289,7 +289,7 @@ const teamMembers = [
       transition={{ duration: 2, delay: 0.5 }}
       viewport={{ once: true }}
     >
-      <FaLeaf className="text-green-500 text-6xl mb-2" />
+    <FaLeaf className="text-[#00712D] text-6xl mb-2" />
       <h3 className="text-lg font-bold mb-1">Emissions</h3>
       <p className="text-gray-600 text-center max-w-xs">
         Reducing carbon emissions through clean and sustainable cooking
@@ -305,13 +305,13 @@ const teamMembers = [
 <section className="py-20 relative bg-gradient-to-r from-green-300 via-green-100 to-green-300 overflow-hidden">
       <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
         How The{" "}
-        <span className="relative inline-block text-orange-500">
+      <span className="relative inline-block text-[#00712D]">
           Products Work
-          <img
+          {/* <img
             src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[170px] mt-2"
-          />
+          /> */}
         </span>
       </h2>
 
@@ -328,7 +328,7 @@ const teamMembers = [
               viewport={{ once: true, amount: 0.4 }}
               variants={buttonVariants}
               className={`text-lg md:text-xl font-bold text-left transition-colors ${
-                selected === key ? "text-orange-500" : "text-gray-700"
+              selected === key ? "text-[#00712D]" : "text-gray-700"
               }`}
             >
               {content[key].title}
@@ -373,13 +373,13 @@ const teamMembers = [
  <section className="mt-1 pt-12 pb-8 relative">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
         Our{" "}
-        <span className="relative inline-block text-orange-500">
+<span className="relative inline-block text-[#00712D]">
           Steam Cooking
-          <img
+          {/* <img
             src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[170px] mt-2"
-          />
+          /> */}
         </span>
       </h2>
 
@@ -414,14 +414,14 @@ const teamMembers = [
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           Meet{" "}
-          <span className="relative inline-block text-orange-500">
+      <span className="relative inline-block text-[#00712D]">
             Our Team
-            <img
+            {/* <img
               src={`${process.env.PUBLIC_URL}/images/design.png`}
               alt="Design underline"
               loading="lazy"
               className="block mx-auto w-full max-w-[160px] mt-2"
-            />
+            /> */}
           </span>
         </h2>
 
@@ -440,7 +440,7 @@ const teamMembers = [
 
                 {/* Name */}
                 <h3 className="text-xl font-bold text-gray-900">{member.name}</h3>
-                <p className="text-base text-orange-500">{member.dept}</p>
+                <p className="text-base text-[#F58220]">{member.dept}</p>
 
                 {/* Description */}
                 {/* <p className="mt-2 text-sm md:text-base text-gray-700 max-w-xs">

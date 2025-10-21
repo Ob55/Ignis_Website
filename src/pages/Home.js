@@ -97,11 +97,13 @@ const offerTexts = {
 
 
 const testimonials = [
-  "Ignis Innovation transformed our institutional kitchen – energy-efficient and easy to use!",
-  "The staff training was excellent, and the digital monitoring makes our operations seamless.",
-  "Cleaner cooking and safer working conditions – highly recommend their steam solutions.",
-  "We reduced energy costs significantly with their appliances and support services.",
+  { name: "Paul", message: "Ignis Innovation transformed our institutional kitchen – energy-efficient and easy to use!" },
+  { name: "Dennis", message: "The staff training was excellent, and the digital monitoring makes our operations seamless." },
+  { name: "Shaile", message: "Cleaner cooking and safer working conditions – highly recommend their steam solutions." },
+  { name: "Lily", message: "We reduced energy costs significantly with their appliances and support services." },
+  { name: "Elizabeth", message: "Their customer support is outstanding and they truly care about results." }
 ];
+
  const [current, setCurrent] = useState(0);
 
   // Auto-advance every 5 seconds
@@ -220,7 +222,7 @@ const testimonials = [
     </div>
   </div>
 </section> */}
-<section className="relative bg-green-900 text-white m-0 p-0 overflow-hidden min-h-screen">
+<section className="relative bg-[#00712D] text-white m-0 p-0 overflow-hidden min-h-screen">
   {/* Background Video */}
   <video
   className="absolute inset-0 w-full h-full object-cover"
@@ -247,7 +249,7 @@ const testimonials = [
   transition={{ duration: 0.8 }}
   className="text-3xl md:text-5xl font-extrabold text-white mb-8 leading-tight"
 >
-  <span className="block text-5xl md:text-7xl font-extrabold text-orange-500 mb-2">
+<span className="block text-5xl md:text-7xl font-extrabold text-[#F58220] mb-2">
     IGNIS INNOVATION
   </span>
   <span className="text-white font-semibold md:text-4xl text-2xl">
@@ -274,13 +276,13 @@ const testimonials = [
         className="flex justify-center md:justify-start gap-6"
       >
         <button
-          className="bg-green-800 text-white px-8 py-4 rounded-lg text-lg hover:bg-green-900 transition"
+          className="bg-[#00712D] text-white px-8 py-4 rounded-lg text-lg hover:bg-[#00712D] transition"
           onClick={() => navigate("/contact")}
         >
           Talk To Our Team
         </button>
         <button
-          className="bg-orange-500 text-black px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition"
+className="bg-[#F58220] text-black px-8 py-4 rounded-lg text-lg hover:bg-yellow-300 transition"
           onClick={() => navigate("/product")}
         >
           Shop Household Appliances
@@ -304,14 +306,14 @@ const testimonials = [
   <div className="container mx-auto text-center px-6 md:px-12 mb-8 relative z-10">
     <h2 className="text-3xl md:text-4xl font-extrabold mb-4 inline-block relative">
       Our{" "}
-      <span className="relative inline-block text-green-500">
+    <span className="relative inline-block text-[#00712D]">
         Metrics
         {/* Image directly below Metrics only */}
-        <img
+        {/* <img
         src={`${process.env.PUBLIC_URL}/images/design.png`}
           alt="Design"
           className="block mx-auto w-full max-w-[120px] mt-2"
-        />
+        /> */}
       </span>
     </h2>
   </div>
@@ -366,14 +368,14 @@ const testimonials = [
     <div className="text-left mb-6 md:mb-0 md:w-1/2">
       <h2 className="text-3xl font-bold text-gray-800">
   What{" "}
-  <span className="relative inline-block text-green-500">
+    <span className="relative inline-block text-[#00712D]">
     We Offer
     {/* Image directly below "we offer" */}
-    <img
+    {/* <img
     src={`${process.env.PUBLIC_URL}/images/design.png`}
       alt="Design"
       className="block mx-auto w-full max-w-[110px] mt-2"
-    />
+    /> */}
   </span>
 </h2>
         <AnimatePresence mode="wait">
@@ -393,7 +395,7 @@ const testimonials = [
         variants={itemVariants}
         className="flex items-center bg-white shadow-lg rounded-xl px-6 py-6 text-gray-800 text-lg font-semibold w-full max-w-[700px] min-h-[70px]"
       >
-        <CheckCircleIcon className="h-7 w-7 text-green-500 mr-4" />
+<CheckCircleIcon className="h-7 w-7 text-[#00712D] mr-4" />
         {text}
       </motion.div>
     ))}
@@ -410,7 +412,9 @@ const testimonials = [
           <span
             key={offer}
             className={`cursor-pointer transition ${
-              selectedOffer === offer ? "text-green-500 font-semibold" : "hover:text-green-500"
+            selectedOffer === offer
+              ? "text-[#00712D] font-semibold"
+              : "hover:text-[#00712D]"
             }`}
             onClick={() => setSelectedOffer(offer)}
           >
@@ -460,13 +464,13 @@ const testimonials = [
     <div className="text-center md:text-left max-w-2xl md:w-1/2 space-y-6">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
         Why{" "}
-        <span className="relative inline-block text-green-600">
+        <span className="relative inline-block text-[#00712D]">
           Steam
-          <img
+          {/* <img
             src={`${process.env.PUBLIC_URL}/images/design.png`}
             alt="Design"
             className="block mx-auto w-full max-w-[100px] mt-2"
-          />
+          /> */}
         </span>{" "}
         Cooking?
       </h2>
@@ -483,12 +487,13 @@ const testimonials = [
             key={text}
             onClick={() => setSelectedBenefit(text)}
             className={`flex items-center bg-gray-50 hover:bg-gray-100 shadow-sm rounded-xl px-6 py-5 text-gray-800 text-lg font-semibold transition-all duration-300 ${
-              selectedBenefit === text
-                ? "border-2 border-green-500 shadow-md"
-                : "border border-transparent"
+                    selectedBenefit === text
+          ? "border-2 border-[#00712D] shadow-md"
+          : "border border-transparent hover:border-[#00712D]"
+
             }`}
           >
-            <CheckCircleIcon className="h-6 w-6 text-green-500 mr-4" />
+<CheckCircleIcon className="h-6 w-6 text-[#00712D] mr-4" />
             {text}
           </div>
         ))}
@@ -518,13 +523,13 @@ const testimonials = [
       viewport={{ once: false, amount: 0.3 }}
     >
       Our{" "}
-      <span className="relative inline-block text-green-500">
+      <span className="relative inline-block text-[#00712D]">
         Partners
-        <img
+        {/* <img
           src={`${process.env.PUBLIC_URL}/images/design.png`}
           alt="Design"
           className="block mx-auto w-full max-w-[120px] mt-2"
-        />
+        /> */}
       </span>
     </motion.h2>
 
@@ -566,17 +571,17 @@ const testimonials = [
     <div className="flex justify-between items-center mb-10">
        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
   Featured{" "}
-  <span className="relative inline-block text-green-500">
+    <span className="relative inline-block text-[#00712D]">
     Products
-    <img
+    {/* <img
       src={`${process.env.PUBLIC_URL}/images/design.png`}
       alt="Design"
       className="block mx-auto w-full max-w-[120px] mt-2"
-    />
+    /> */}
   </span>
 </h2>
       <button 
-      className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition"
+      className="bg-[#00712D] text-white px-6 py-3 rounded-lg hover:bg-[#005A23] transition"
       onClick={() => navigate("/Product ")} >
         View Our Products
       </button>
@@ -594,7 +599,7 @@ const testimonials = [
           {/* Overlay Arrow Button */}
           <button
             // onClick={() => alert(`Product ${product} clicked!`)}
-            className="absolute bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg opacity-80 hover:opacity-100 transition"
+          className="absolute bottom-4 right-4 bg-[#00712D] text-white p-3 rounded-full shadow-lg opacity-80 hover:opacity-100 transition"
           >
             {/* ➔ */}
           </button>
@@ -606,58 +611,54 @@ const testimonials = [
 
    
     {/* Testimonials Section */}
-<section className="py-20 relative bg-gradient-to-r from-green-200 via-green-350 to-green-200 overflow-hidden">
-  {/* Floating abstract blobs */}
-  {/* <div className="absolute top-0 left-1/4 w-80 h-80 bg-yellow-200 rounded-full opacity-30 animate-pulse-slow -translate-x-1/2 -translate-y-1/2"></div>
-  <div className="absolute bottom-10 right-1/3 w-72 h-72 bg-yellow-100 rounded-full opacity-25 animate-pulse-slow translate-x-1/2 translate-y-1/2"></div>
-  <div className="absolute top-1/3 right-1/2 w-64 h-64 bg-yellow-300 rounded-full opacity-20 animate-pulse-slow"></div> */}
+<section className="py-20 relative overflow-hidden bg-gradient-to-r from-green-300 via-white to-green-300">
+      <div className="container mx-auto text-center px-6 relative z-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8">
+          Customer{" "}
+          <span className="relative inline-block text-[#00712D]">
+            Testimonials
+            {/* <img
+              src={`${process.env.PUBLIC_URL}/images/design.png`}
+              alt="Design"
+              className="block mx-auto w-full max-w-[130px] mt-2"
+            /> */}
+          </span>
+        </h2>
 
-  <div className="container mx-auto text-center px-6 relative z-10">
-     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
-  Customer{" "}
-  <span className="relative inline-block text-green-500">
-    Testimonials
-    <img
-      src={`${process.env.PUBLIC_URL}/images/design.png`}
-      alt="Design"
-      className="block mx-auto w-full max-w-[130px] mt-2"
-    />
-  </span>
-</h2>
+        <div className="relative flex items-center justify-center">
+          {/* Left Button */}
+          <button
+            onClick={prevTestimonial}
+            className="absolute left-0 md:left-[-50px] bg-[#00712D] text-white p-3 rounded-full shadow-lg hover:bg-[#005A23] transition z-10"
+          >
+            <ChevronLeftIcon className="h-6 w-6" />
+          </button>
 
-    <div className="relative flex items-center justify-center">
-      {/* Left Button */}
-      <button
-        onClick={prevTestimonial}
-        className="absolute left-0 md:left-[-50px] bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition z-10"
-      >
-        <ChevronLeftIcon className="h-6 w-6" />
-      </button>
+          {/* Testimonial Box */}
+          <div className="bg-white rounded-xl shadow-2xl p-10 max-w-2xl mx-6 text-gray-800 text-lg font-medium relative">
+            {/* Decorative Open Quote */}
+            <span className="text-yellow-400 text-6xl absolute top-2 left-4 select-none">&ldquo;</span>
 
-      {/* Testimonial Box */}
-      <div className="bg-yellow-100 rounded-xl shadow-2xl p-10 max-w-2xl mx-6 text-gray-800 text-lg font-medium relative">
-        {/* Decorative Open Quote */}
-        <span className="text-yellow-400 text-6xl absolute top-2 left-4 select-none">&ldquo;</span>
+            {/* Author Name */}
+          <span className="text-[#F58220] text-6xl absolute top-2 left-4 select-none">&ldquo;</span>
 
-        {/* Author Name */}
-        <p className="font-semibold text-gray-900 mb-4">Brian</p>
+            {/* Testimonial Text */}
+            <p className="relative z-10">{testimonials[current].message}</p>
 
-        {/* Testimonial Text */}
-        <p className="relative z-10">{testimonials[current]}</p>
+            {/* Decorative Close Quote */}
+            <span className="text-[#F58220] text-6xl absolute bottom-2 right-4 select-none">&rdquo;</span>
+          </div>
 
-        {/* Decorative Close Quote */}
-        <span className="text-yellow-400 text-6xl absolute bottom-2 right-4 select-none">&rdquo;</span>
+          {/* Right Button */}
+          <button
+            onClick={nextTestimonial}
+            className="absolute right-0 md:right-[-50px] bg-[#00712D] text-white p-3 rounded-full shadow-lg hover:bg-[#005A23] transition z-10"
+          >
+            <ChevronRightIcon className="h-6 w-6" />
+          </button>
+        </div>
       </div>
-      {/* Right Button */}
-      <button
-        onClick={nextTestimonial}
-        className="absolute right-0 md:right-[-50px] bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition z-10"
-      >
-        <ChevronRightIcon className="h-6 w-6" />
-      </button>
-    </div>
-  </div>
-</section>
+    </section>
       
       {/* <Footer />       */}
     </div>

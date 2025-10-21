@@ -153,7 +153,7 @@ const containerVariants = {
       <section className="relative py-16 px-6 overflow-hidden">
       {/* Orange Background (left side) */}
       <div
-        className="absolute inset-0 bg-orange-500"
+      className="absolute inset-0 bg-[#F58220]"
         style={{
           clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)",
         }}
@@ -186,13 +186,13 @@ const containerVariants = {
           className="text-4xl font-bold text-gray-200 mb-12 text-left"
         >
           Featured This{" "}
-          <span className="relative inline-block text-green-800">
+          <span className="relative inline-block text-[#00712D]">
             Week
-            <img
+            {/* <img
               src={`${process.env.PUBLIC_URL}/images/design.png`}
               alt="Featured Week"
               className="block w-full max-w-[100px] mt-2"
-            />
+            /> */}
           </span>
         </motion.h2>
 
@@ -209,7 +209,7 @@ const containerVariants = {
             variants={cardVariants}
             className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
           >
-            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+<div className="absolute top-3 left-3 bg-[#F58220] text-white text-sm px-3 py-1 rounded-full shadow">
               EPCs
             </div>
             <img
@@ -232,7 +232,7 @@ const containerVariants = {
             variants={cardVariants}
             className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
           >
-            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+<div className="absolute top-3 left-3 bg-[#F58220] text-white text-sm px-3 py-1 rounded-full shadow">
               Induction Cookers
             </div>
             <img
@@ -255,7 +255,7 @@ const containerVariants = {
             variants={cardVariants}
             className="relative bg-white rounded-2xl shadow-lg overflow-hidden"
           >
-            <div className="absolute top-3 left-3 bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow">
+          <div className="absolute top-3 left-3 bg-[#F58220] text-white text-sm px-3 py-1 rounded-full shadow">
               Steam Cooking
             </div>
             <img
@@ -290,13 +290,13 @@ const containerVariants = {
             onClick={() => setActiveTab(tab)}
             className={`pb-3 text-lg font-semibold relative transition ${
               activeTab === tab
-                ? "text-green-700"
-                : "text-gray-500 hover:text-green-600"
+                ? "text-[#00712D]"
+                : "text-gray-500 hover:text-[#00712D]"    
             }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
             {activeTab === tab && (
-              <span className="absolute left-0 -bottom-[2px] w-full h-[3px] bg-green-600 rounded-full"></span>
+              <span className="absolute left-0 -bottom-[2px] w-full h-[3px] bg-[#00712D] rounded-full"></span>
             )}
           </button>
         ))}
@@ -353,7 +353,7 @@ const containerVariants = {
                 />
               </div>
               <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-green-600">
+                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-[#00712D]">
                   {item.title}
                 </h3>
                 <p className="text-gray-500 text-sm mt-2 line-clamp-2">
@@ -413,7 +413,7 @@ const containerVariants = {
       {["Industrial", "Steam", "Home", "Outdoor"].map((cat, i) => (
         <span
           key={i}
-          className="px-4 py-2 bg-green-50 text-green-700 text-sm font-medium rounded-full hover:bg-green-100 cursor-pointer"
+          className="px-4 py-2 bg-green-50 text-[#00712D] text-sm font-medium rounded-full hover:bg-green-100 cursor-pointer"
         >
           {cat}
         </span>
@@ -428,7 +428,7 @@ const containerVariants = {
       {["Cookers", "Energy Saving", "Industrial", "Kitchen"].map((tag, i) => (
         <span
           key={i}
-          className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg hover:bg-green-100 cursor-pointer"
+          className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg hover:bg-[#00712D] hover:text-white cursor-pointer"
         >
           {tag}
         </span>

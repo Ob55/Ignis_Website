@@ -29,11 +29,11 @@ export default function FAQs() {
       {/* Section 1: Sharp Split Header */}
       <div className="relative w-full text-white text-center py-16 px-4 overflow-hidden">
         <div
-          className="absolute inset-0 bg-orange-500"
+        className="absolute inset-0 bg-[#F58220]"
           style={{ clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)" }}
         ></div>
         <div
-          className="absolute inset-0 bg-green-900"
+        className="absolute inset-0 bg-[#00712D]"
           style={{
             clipPath:
               window.innerWidth >= 768
@@ -68,7 +68,7 @@ export default function FAQs() {
                 <h2 className="text-lg md:text-xl font-semibold text-gray-800">
                   {faq.question}
                 </h2>
-                <span className="text-green-600 text-2xl">
+                <span className="text-[#00712D] text-2xl">
                   {openIndex === index ? "−" : "+"}
                 </span>
               </div>

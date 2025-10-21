@@ -38,7 +38,7 @@ export default function Contact() {
       toast.success("Thanks for your message! We’ll get back to you soon.", {
         position: "top-right",
         autoClose: 4000,
-        className: "bg-green-500 text-white rounded-lg shadow-lg",
+        className: "bg-[#00712D] text-white rounded-lg shadow-lg",
         bodyClassName: "text-white font-medium",
         progressClassName: "bg-white",
       });
@@ -56,7 +56,7 @@ export default function Contact() {
         viewport={{ once: true }}
       >
         <div
-          className="absolute inset-0 bg-orange-500"
+        className="absolute inset-0 bg-[#F58220]"
           style={{
             clipPath: "polygon(0 0, 70% 0, 70% 100%, 0% 100%)",
           }}
@@ -86,7 +86,7 @@ export default function Contact() {
         {/* Left Side */}
         <div className="lg:w-1/2 flex flex-col justify-center p-6 sm:p-8 md:p-10 text-center lg:text-left">
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-500"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#F58220]"
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
@@ -122,7 +122,7 @@ export default function Contact() {
                   placeholder="Name"
                   required
                   maxLength="50"
-                  className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
+                  className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#F58220] outline-none"
                 />
                 <input
                   type="email"
@@ -130,7 +130,7 @@ export default function Contact() {
                   placeholder="Email"
                   required
                   maxLength="100"
-                  className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-orange-400 outline-none"
+                className="flex-1 border px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#F58220] outline-none"
                 />
               </div>
 
@@ -156,7 +156,7 @@ export default function Contact() {
                 placeholder="Message"
                 required
                 maxLength="500"
-                className="w-full border px-4 py-3 rounded-lg h-32 focus:ring-2 focus:ring-orange-400 outline-none"
+              className="w-full border px-4 py-3 rounded-lg h-32 focus:ring-2 focus:ring-[#F58220] outline-none"
               ></textarea>
 
               <ValidationError prefix="Message" field="message" errors={state.errors} />
@@ -172,7 +172,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-all duration-200"
+            className="bg-[#F58220] text-white px-6 py-3 rounded-lg hover:bg-[#e6731a] transition-all duration-200"
               >
                 {state.submitting ? "Sending..." : "Leave Message"}
               </button>
