@@ -134,7 +134,7 @@ const teamMembers = [
 
       {/* Green Background (right side - Vision, slanted) */}
       <div
-        className="absolute inset-0 bg-green-900 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
+        className="absolute inset-0 bg-green-800 md:[clip-path:polygon(55%_0,100%_0,100%_100%,48%_100%)] [clip-path:polygon(60%_0,100%_0,100%_100%,48%_100%)]"
       ></div>
 
       {/* Content grid */}

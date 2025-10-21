@@ -146,7 +146,7 @@ const testimonials = [
 
 
   const benefits = [
-    "High Throughput: Cook for thousands efficiently with consistent quality.",
+    "High efficiency Throughput: Cook for thousands efficiently with consistent quality.",
     "Energy Flexibility: Works with electricity or gas/biogas—adapts easily to changing tariffs.",
     "Digitally Managed: Sensors and dashboards track efficiency, maintenance, and accountability.",
     "Lower Lifecycle Cost: Higher upfront cost, but reduces fuel, staff hours, and food wastage over time.",
@@ -248,10 +248,10 @@ const testimonials = [
   className="text-3xl md:text-5xl font-extrabold text-white mb-8 leading-tight"
 >
   <span className="block text-5xl md:text-7xl font-extrabold text-orange-500 mb-2">
-    Ignis Innovation
+    IGNIS INNOVATION
   </span>
   <span className="text-white font-semibold md:text-4xl text-2xl">
-    Building Africa’s clean cooking infrastructure for schools, institutions, and communities
+    Building Africa’s clean cooking infrastructure for institutions communities and households
   </span>
 </motion.h1>
 
@@ -260,10 +260,10 @@ const testimonials = [
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3 }}
-        className="text-lg md:text-2xl mb-10 text-green-100 max-w-2xl"
+        className="text-lg md:text-2xl mb-10 text-green-300 max-w-2xl"
       >
-        Designs and deploys steam-based institutional kitchens and efficient
-        electric appliances for households—backed by digital monitoring,
+        We design and deploy steam-based institutional kitchens and efficient
+        electric appliances for households, backed by digital monitoring,
         training, and after-sales service.
       </motion.p>
 
