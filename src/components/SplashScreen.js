@@ -84,9 +84,10 @@ export default function SplashScreen({ onFinish = () => {} }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="text-6xl md:text-8xl lg:text-9xl font-extrabold 
-                           bg-gradient-to-r from-orange-400 via-green-400 to-green-600 
-                           text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]"
+               className="text-6xl md:text-8xl lg:text-9xl font-extrabold 
+           bg-gradient-to-r from-[#F58220] via-[#00712D] to-[#00712D] 
+           text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]"
+
               >
                 {letter}
               </motion.span>
@@ -103,9 +104,9 @@ export default function SplashScreen({ onFinish = () => {} }) {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="text-2xl md:text-4xl lg:text-5xl font-bold 
-                           bg-gradient-to-r from-orange-300 via-green-300 to-green-500 
-                           text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(16,185,129,0.6)]"
+                  className="text-2xl md:text-4xl lg:text-5xl font-bold 
+                            bg-gradient-to-r from-[#F58220] via-[#00712D] to-[#00712D] 
+                            text-transparent bg-clip-text drop-shadow-[0_0_10px_rgba(16,185,129,0.6)]"
               >
                 {letter}
               </motion.span>
@@ -123,7 +124,7 @@ export default function SplashScreen({ onFinish = () => {} }) {
               initial="initial"
               animate={reduce ? {} : "animate"}
               className="absolute w-12 h-20 md:w-16 md:h-28 rounded-full 
-                         bg-gradient-to-t from-orange-200/30 via-green-200/40 to-transparent blur-2xl"
+bg-gradient-to-t from-[#F58220]/30 via-[#00712D]/40 to-transparent blur-2xl"
               style={{ left: `${40 + i * 20}%`, transform: "translateX(-50%)" }}
             />
           ))}
@@ -137,7 +138,7 @@ export default function SplashScreen({ onFinish = () => {} }) {
             initial="initial"
             animate="animate"
             className="absolute w-24 h-24 rounded-full 
-                       bg-gradient-to-tr from-orange-200/20 via-green-200/20 to-transparent blur-3xl"
+        bg-gradient-to-tr from-[#F58220]/20 via-[#00712D]/20 to-transparent blur-3xl"
             style={{
               top: `${20 + i * 15}%`,
               left: `${30 + i * 15}%`

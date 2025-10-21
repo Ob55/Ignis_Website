@@ -69,6 +69,12 @@ const teamMembers = [
     img: `${process.env.PUBLIC_URL}/images/Shadrak.webp`,
     linkedin: "https://www.linkedin.com/in/shadrack-amihanda-835829204/",
   },
+  {
+    name: "Elizabeth",
+    dept: "Marketing",
+    img: `${process.env.PUBLIC_URL}/images/Elizabeth.webp`,
+    linkedin: "/",
+  },
 ];
 
   const content = {
