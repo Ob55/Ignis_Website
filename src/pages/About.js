@@ -170,14 +170,13 @@ const teamMembers = [
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
+            viewport={{ once: true }
           /> */}
 
           <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl">
-            Ignis Innovation accelerates clean institutional <br />
-            kitchens and electric cooking at home <br />
-            by combining fit-for-purpose technology, training, <br />
-            digital monitoring, and access to finance and carbon incentives.
+            We design, manufacture, and deploy clean cooking solutions for
+            households and institutions that blend finance and innovation to
+            help Africa cook smarter, cleaner, and with dignity.
           </p>
         </motion.div>
 
@@ -209,11 +208,9 @@ const teamMembers = [
           /> */}
 
           <p className="text-lg md:text-2xl leading-relaxed ml-10 max-w-2xl text-white">
-            To design, manufacture, and deploy innovative <br />
-            steam-based kitchen systems and e-cooking products <br />
-            that make clean, reliable cooking the default <br />
-            across Africa.
-          </p>
+            A cleaner, healthier, and more equitable Africa powered by
+            sustainable, efficient, and dignified cooking solutions.
+                      </p>
         </motion.div>
       </div>
     </div>
